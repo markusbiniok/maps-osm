@@ -2,7 +2,7 @@ import React from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './App.css';
-import paths from './cyclePath.geojson';
+import radwege from './cyclePath.geojson';
 
 function App() {
 
@@ -10,11 +10,6 @@ function App() {
 
   const showCycle = () => {
     console.log('Button wurde gedrückt!'); 
-  }
-
-  const geoJsonData = {
-    type: 'geojson',
-    data: paths 
   }
 
   return (
@@ -35,4 +30,4 @@ function App() {
 export default App;
 
 
-//<GeoJSON data={paths} /> nach TileLayer
+//<GeoJSON data={radwege} /> nach TileLayer
