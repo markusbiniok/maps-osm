@@ -1,16 +1,22 @@
 import React from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './App.css';
+import paths from './cyclePath.geojson';
 
 function App() {
 
   const position = [51.3396955, 12.3730747];
 
   const showCycle = () => {
-    console.log('Button wurde gedrückt!');
+    console.log('Button wurde gedrückt!'); 
   }
-  
+
+  const geoJsonData = {
+    type: 'geojson',
+    data: paths 
+  }
+
   return (
     <main id='main'>
     <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
@@ -27,3 +33,6 @@ function App() {
 }
 
 export default App;
+
+
+//<GeoJSON data={paths} /> nach TileLayer
