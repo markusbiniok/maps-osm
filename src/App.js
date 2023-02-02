@@ -20,7 +20,7 @@ function App() {
         attribution='&copy; <a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
       />
-      <GeoJSON attribution="&copy; credits due..." data={testData} />>
+      <GeoJSON attribution="&copy; credits due..." data={testData}/>
     </MapContainer>
     <div className='button'>
       <button id='btn1' onClick={showCycle}>Radverkehr</button>
