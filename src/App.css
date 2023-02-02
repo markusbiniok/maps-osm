@@ -4,6 +4,7 @@
 
 .leaflet-container {
   height: 85vh;
+  width: 85%;
 }
 
 .button {
@@ -12,4 +13,8 @@
 
 #btn1 {
   width: 15%;
+}
+
+#hinweise {
+  margin-top: 10px;
 }
