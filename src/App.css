@@ -2,9 +2,29 @@
   margin: 10px;
 }
 
-.leaflet-container {
+.mapPart {
+  border: 1px solid;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.map {
+  border: 1px solid red;
+}
+
+.legend {
+  border: 1px solid green;
+  margin-left: 10px;
+  width: 100%;
   height: 85vh;
-  width: 85%;
+}
+
+.leaflet-container {
+  width: 80vw;
+  height: 85vh;
 }
 
 .button {
