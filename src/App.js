@@ -18,7 +18,6 @@ function App() {
 
   const centerMap = () => {
     console.log('Button wurde gedrückt');
-    map.setView([51.3396955, 12.3730747], 13);
   }
   
 
