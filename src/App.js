@@ -6,55 +6,45 @@ import testData from './testData.json';
 import cycleMarker from './circle.png';
 
 
-
 function App() {
 
   const mapRef = useRef();
   const center = [51.3396955, 12.3730747];
-
-  const showCycleTraffic = () => {
-    console.log('Button wurde gedrückt!'); 
-  }
 
   const customIcon1 = L.icon ({
     iconUrl: require('./circle.png'),
     iconSize: [15, 15]
   });
 
+  const centerMap = () => {
+    console.log('Button wurde gedrückt');
+    map.setView([51.3396955, 12.3730747], 13);
+  }
   
+
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
-    /*const cycleIcon = new L.Icon ({
-      iconUrl: cycleMarker
-    });
 
-    const cycleTrafficGeojson = new L.GeoJSON (testData, {
-      pointToLayer: (feature, latlng) => {
-        return L.marker (latlng, {
-          icon: cycleIcon
-        });
+    var markerStyle = {
+      radius: 2,
+      fillColor: '#ff0000',
+      fillOpacity: 1,
+      color: '#ff0000',
+      weight: 1, 
+      opacity: 1
+    }
+  
+    L.geoJSON (testData, {
+      pointToLayer: function (feature, latlng) {
+        return L.circleMarker (latlng, markerStyle);
       }
-    });
-
-    cycleTrafficGeojson.addTo(map);*/
-    
-  
-    function createCustomIcon (feature, latlng) {
-      let myIcon = L.icon ({
-        iconUrl: cycleMarker,
-        iconSize: [7, 7]
-      })
-      return L.marker (latlng, {icon: myIcon});
-    }
-  
-    let myLayerOptions = {
-      pointToLayer: createCustomIcon
-    }
-    L.geoJSON (testData, myLayerOptions).addTo(map);
-
-  
+    }).addTo(map);
   }, []);
+
+  const showCycleTraffic = () => {
+    console.log('Button wurde gedrückt');
+  }
 
   return (
     <main id='main'>
@@ -65,8 +55,16 @@ function App() {
               attribution='&copy; <a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
             />
-            
+            <Marker position={[51.35, 12.3730747]} icon={customIcon1}/> 
         </MapContainer>
+        </div>
+        <div className='buttons'>
+          <div className='button1'>
+            <button id='btn1' onClick={showCycleTraffic}>Radverkehr</button>
+          </div>
+          <div className='button2'>
+            <button id='btn2' onClick={centerMap}>Map zentrieren</button>
+          </div>
         </div>
       </div>
     <div id='hinweise'>Legende aus cyclosm.org übernehmen</div>
