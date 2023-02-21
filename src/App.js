@@ -45,12 +45,12 @@ function DisplayCycleTraffic({ map }) {
 
   return (
   
-    <div>
+    <div className='mapBtn1'>
       <label className="switch">
         <input type="checkbox" id="cb3" onClick={showCycleTraffic}/>
         <span className="slider round"/>
       </label>
-      <p>Radverkehr</p>
+      <div>Radverkehr</div>
     </div>
   )
 }
@@ -99,7 +99,7 @@ function App() {
           </div>
         </div>
         </div>
-        <div className='buttons'> 
+        <div className='mapButtons'> 
           <div id='btn1'>
             {map ? <DisplayCycleTraffic map={map} /> : null}        
           </div>

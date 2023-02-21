@@ -82,11 +82,17 @@
   vertical-align: bottom;
 }
 
-.buttons {
+.mapButtons {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 5px;
+}
+
+.mapButton1 {
+  display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #btn1, #btn2 {
