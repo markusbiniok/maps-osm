@@ -4,7 +4,6 @@ import { LayersControl, Popup, MapContainer, TileLayer, GeoJSON, Marker, useMap,
 import './App.css';
 import testData from './testData.json';
 
-
 const mapCenter = [51.3396955, 12.3730747];
 const mapZoom = 14;
 
@@ -45,9 +44,14 @@ function DisplayCycleTraffic({ map }) {
   }, [map]);
 
   return (
-    <p>
-      <button onClick={showCycleTraffic}>Radverkehr</button>
-    </p>
+  
+    <div>
+      <label className="switch">
+        <input type="checkbox" id="cb3" onClick={showCycleTraffic}/>
+        <span className="slider round"/>
+      </label>
+      <p>Radverkehr</p>
+    </div>
   )
 }
 
@@ -71,6 +75,11 @@ function App() {
             />
             <ZoomControl position='bottomright'/>
             <CircleMarker center={[51.3396955, 12.376]} /> 
+            <LayersControl position="topright">
+              <LayersControl.Overlay name="Radverkehr">
+                <GeoJSON data={testData}/>
+              </LayersControl.Overlay>
+            </LayersControl>
           </MapContainer>
         </div>
         <div className='legend'>
