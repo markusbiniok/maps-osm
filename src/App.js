@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useCallback, useState, useMemo } from 'react';
-import L, { map } from 'leaflet';
-import { LayersControl, Popup, MapContainer, TileLayer, GeoJSON, Marker, useMap, Circle, CircleMarker, useMapEvent, ZoomControl } from 'react-leaflet';
+import React, { useCallback, useState } from 'react';
+import L from 'leaflet';
+import { LayersControl, MapContainer, TileLayer, GeoJSON, CircleMarker, ZoomControl } from 'react-leaflet';
 import './App.css';
 import testData from './testData.json';
 import bicycle1 from './bicycle1.svg';
@@ -99,7 +99,7 @@ function App() {
             <div id='span7'/><div id='p7'>keine Kfz</div> 
             <div id='span8'/><div id='p8'>Fahrradabstellplatz</div> 
             <div> 
-              <img id='span9' src={bicycle1}/>
+              <img id='span9' src={bicycle1} alt='bicycle icon'/>
             </div>
             <div id='p9'>Fahrradgeschäft</div>          
           </div>
