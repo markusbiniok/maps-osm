@@ -59,7 +59,7 @@ function Map() {
   const [map, setMap] = useState(null); 
 
   return (
-    <main>
+    <main id='mainPart'>
       <div className='mapPart'>
         <div className='map'>
           <MapContainer ref={setMap} center={mapCenter} zoom={mapZoom} scrollWheelZoom={true} zoomControl={false}>

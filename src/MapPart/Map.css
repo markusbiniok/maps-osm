@@ -1,3 +1,7 @@
+#mainPart {
+  margin: 10px;
+}
+
 .mapPart {
   display: flex;
   justify-content: flex-start;
@@ -13,7 +17,7 @@
 .leaflet-container {
   border-radius: 10px;
   width: 80vw;
-  height: 85vh;
+  height: 80vh;
 }
 
 .mapButtons {
@@ -32,7 +36,7 @@
   border-radius: 15px;
   color: #000000;
   z-index: 1;
-  background: #e8e8e8;
+  background: white;
   position: relative;
   font-family: 'Roboto';
   font-weight: 800;
@@ -50,7 +54,7 @@
   height: 100%;
   width: 0;
   border-radius: 15px;
-  background-color: #a63b3b;
+  background-color: #d05663;
   z-index: -1;
   transition: all 500ms;
 }
@@ -63,13 +67,17 @@
   height: 100%;
   width: 0;
   border-radius: 15px;
-  background-color: #347492;
+  background-color: #c8d8e4;
   z-index: -1;
   transition: all 500ms;
 }
  
-#mapBtn1:hover, #mapBtn2:hover {
+#mapBtn1:hover {
   color: #e8e8e8;
+}
+
+#mapBtn2:hover {
+  color: black;
 }
  
 #mapBtn1:hover::before, #mapBtn2:hover::before {
