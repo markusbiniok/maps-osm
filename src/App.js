@@ -38,7 +38,6 @@ function DisplayCycleTraffic({ map }) {
   )
 }
 
-
 //from https://react-leaflet.js.org/docs/example-external-state/
 //center map
 function DisplayPosition({ map }) {
