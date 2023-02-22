@@ -3,24 +3,11 @@ import L, { map } from 'leaflet';
 import { LayersControl, Popup, MapContainer, TileLayer, GeoJSON, Marker, useMap, Circle, CircleMarker, useMapEvent, ZoomControl } from 'react-leaflet';
 import './App.css';
 import testData from './testData.json';
+import bicycle1 from './bicycle1.svg';
 
 const mapCenter = [51.3396955, 12.3730747];
 const mapZoom = 14;
 
-//from https://react-leaflet.js.org/docs/example-external-state/
-//center map
-function DisplayPosition({ map }) {
-
-  const centerMap = useCallback(() => {
-    map.setView(mapCenter, mapZoom)
-  }, [map]);
-
-  return (
-    <p>
-      <button onClick={centerMap}>Karte zentrieren</button>
-    </p>
-  )
-}
 
 //show cycle traffic
 function DisplayCycleTraffic({ map }) {
@@ -45,17 +32,27 @@ function DisplayCycleTraffic({ map }) {
 
   return (
   
-    <div className='mapBtn1'>
-      <label className="switch">
-        <input type="checkbox" id="cb3" onClick={showCycleTraffic}/>
-        <span className="slider round"/>
-      </label>
-      <div>Radverkehr</div>
+    <div className='button'>
+      <button id='mapBtn1' onClick={showCycleTraffic}>Radverkehr</button> 
     </div>
   )
 }
 
 
+//from https://react-leaflet.js.org/docs/example-external-state/
+//center map
+function DisplayPosition({ map }) {
+
+  const centerMap = useCallback(() => {
+    map.setView(mapCenter, mapZoom)
+  }, [map]);
+
+  return (
+    <p>
+      <button id='mapBtn2' onClick={centerMap}>Karte zentrieren</button>
+    </p>
+  )
+}
 
 function App() {
 
@@ -86,30 +83,40 @@ function App() {
           <p id='caption'>Legende</p>
           <p id='ut'>Radinfrastruktur</p>
           <div className='pathOptions'>
-            <p><span id='span1'/> Radweg</p>
-            <p><span id='span4'/> ausgewiesener Radweg</p>
-            <p><span id='span2'>
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <div id='span1'/><div id='p1'>Radweg</div> 
+            <div id='span2'/><div id='p2'>Radweg</div> 
+            <div id='span3'>
+              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1">
                   <line x1="10%" x2="150%" y1="10%" y2="10%" strokeLinecap="butt" strokeDasharray="6,3" stroke="#0000ce" strokeWidth="20%"></line>
                   <line x1="10%" x2="150%" y1="70%" y2="70%" strokeLinecap="butt" stroke="#888" strokeWidth="10%"></line>
-                  <rect x="10%" y="10%" width="140%" height="60%" fill="#e3e1e1"></rect>
-              </svg>
-            </span> Radfahrstreifen</p>
-            <p><span id='span3'/> Fahrradstraße</p>
+                  <rect x="10%" y="10%" width="140%" height="60%" fill="#e3e1e1"></rect></svg>
+            </div><div id='p3'>Radfahrstreifen</div> 
+            <div id='span4'/><div id='p4'>Fahrradstraße</div> 
+          </div>
+          <p id='ut'>Straßeninfrastruktur</p>
+          <div className='streetInfra'>
+            <div id='span5'/><div id='p5'>20 km/h</div> 
+            <div id='span6'/><div id='p6'>30 km/h</div> 
+            <div id='span7'/><div id='p7'>keine Kfz</div> 
+            <div id='span8'/><div id='p8'>Fahrradabstellplatz</div> 
+            <div> 
+              <img id='span9' src={bicycle1}/>
+            </div>
+            <div id='p9'>Fahrradgeschäft</div>          
           </div>
         </div>
-        </div>
-        <div className='mapButtons'> 
-          <div id='btn1'>
-            {map ? <DisplayCycleTraffic map={map} /> : null}        
-          </div>
-          <div id='btn2'>
-            {map ? <DisplayPosition map={map} /> : null}        
-          </div>
-        </div>
-      <div id='hinweise'>
-        Legende aus cyclosm.org übernehmen
       </div>
+      <div className='mapButtons'>
+        <div className='mapButton1'>
+              {map ? <DisplayCycleTraffic map={map} /> : null}   
+        </div>
+        <div className='mapButton2'> 
+            {map ? <DisplayPosition map={map} /> : null}  
+        </div>    
+      </div>            
+    <div id='hinweise'>
+      Legende aus cyclosm.org übernehmen
+    </div>
     </main>
   )
 }
