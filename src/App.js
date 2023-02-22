@@ -115,9 +115,6 @@ function App() {
             {map ? <DisplayPosition map={map} /> : null}  
         </div>    
       </div>            
-    <div id='hinweise'>
-      Legende aus cyclosm.org übernehmen
-    </div>
     </main>
   )
 }
