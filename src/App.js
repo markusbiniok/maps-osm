@@ -1,11 +1,11 @@
 import './App.css';
+import './Map.css';
 import bicycle1 from './bicycle1.svg';
 import testData from './testData.json';
 
 import React, { useCallback, useState } from 'react';
 import L from 'leaflet';
 import { LayersControl, MapContainer, TileLayer, GeoJSON, CircleMarker, ZoomControl } from 'react-leaflet';
-
 
 
 const mapCenter = [51.3396955, 12.3730747];
