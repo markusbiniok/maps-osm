@@ -4,10 +4,10 @@ import testData from './testData.json';
 
 import React, { useCallback, useState } from 'react';
 import L from 'leaflet';
-import { MapContainer, TileLayer, ZoomControl } from 'react-leaflet';
+import { MapContainer, TileLayer, ZoomControl, Marker, LayersControl, LayerGroup } from 'react-leaflet';
 
 
-const mapCenter = [51.3396955, 12.3730747];
+const mapCenter = [51.336, 12.3730747];
 const mapZoom = 14;
 
 //show cycle traffic
@@ -57,6 +57,12 @@ function DisplayPosition({ map }) {
 function Map() {
 
   const [map, setMap] = useState(null); 
+  const dzs1 = [51.339290, 12.345644];
+  const dzs2 = [51.346394, 12.376698];
+  const dzs3 = [51.326745, 12.373747];
+  const dzs4 = [51.334458, 12.399261];
+  const dzs5 = [51.335879, 12.367335];
+  const dzs6 = [51.320706, 12.386071];
 
   return (
     <main id='mainPart'>
@@ -68,6 +74,18 @@ function Map() {
               url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
             />
             <ZoomControl position='bottomright'/>
+            <LayersControl position="topright">
+              <LayersControl.Overlay name="Dauerzählstellen">
+                <LayerGroup>
+                  <Marker position={dzs1}/>
+                  <Marker position={dzs2}/>
+                  <Marker position={dzs3}/>
+                  <Marker position={dzs4}/>
+                  <Marker position={dzs5}/>
+                  <Marker position={dzs6}/>
+                </LayerGroup>
+              </LayersControl.Overlay>
+            </LayersControl>
           </MapContainer>
         </div>
         <Legend/>
