@@ -57,12 +57,21 @@ function DisplayPosition({ map }) {
 function Map() {
 
   const [map, setMap] = useState(null); 
-  const dzs1 = [51.339290, 12.345644];
-  const dzs2 = [51.346394, 12.376698];
-  const dzs3 = [51.326745, 12.373747];
-  const dzs4 = [51.334458, 12.399261];
-  const dzs5 = [51.335879, 12.367335];
-  const dzs6 = [51.320706, 12.386071];
+  const dzs1 = [51.339290, 12.345644]; //Jahnallee
+  const dzs2 = [51.346394, 12.376698]; //Gerberstraße
+  const dzs3 = [51.326745, 12.373747]; //Karl-Liebknecht-Straße
+  const dzs4 = [51.334458, 12.399261]; //Lene-Voigt-Park
+  const dzs5 = [51.335879, 12.367335]; //Manetstraße
+  const dzs6 = [51.320706, 12.386071]; //Semmelweisstraße
+
+  /*var heatmap = h337.create({
+    container: document.getElementsByClassName('map')
+  });
+
+  heatmap.setData ({
+    max: 5,
+    data: [{x: 10, y: 15, value: 5}]
+  });*/
 
   return (
     <main id='mainPart'>
