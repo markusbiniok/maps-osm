@@ -96,7 +96,7 @@ function Map() {
       case false:
         map.eachLayer(function (layer) {
           if (layer instanceof L.CircleMarker) {
-              layer.remove()
+            layer.remove()
           }
         });
         break;
@@ -104,6 +104,7 @@ function Map() {
         break;
     }
   }, [map]);
+
 
   return (
     <main id='mainPart'>
@@ -154,9 +155,3 @@ export default Map;
 
 
 //<CircleMarker center={[51.3396955, 12.376]} /> 
-
-/*<LayersControl position="topright">
-<LayersControl.Overlay name="Radverkehr">
-<GeoJSON data={testData}/>
-</LayersControl.Overlay>
-</LayersControl>*/
