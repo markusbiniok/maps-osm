@@ -46,7 +46,7 @@ function DisplayPosition({ map }) {
   const centerMap = useCallback(() => {
     map.setView(mapCenter, mapZoom)
   }, [map]);
-
+  
   return (
     <p>
       <button id='mapBtn2' onClick={centerMap}>Karte zentrieren</button>
@@ -73,6 +73,38 @@ function Map() {
     data: [{x: 10, y: 15, value: 5}]
   });*/
 
+  const cycleTraffic = useCallback(() => {
+    console.log('Button gedrückt');
+    var el = document.getElementById('cb1');
+    switch (el.checked) {
+      case true:
+        var markerStyle = {
+          radius: 1,
+          fillColor: '#ff0000',
+          fillOpacity: 1,
+          color: '#ff0000',
+          weight: 2, 
+          opacity: 1
+        }
+        //geoJSON points to mapLayer
+        L.geoJSON (testData, {
+          pointToLayer: function (feature, latlng) {
+            return L.circleMarker (latlng, markerStyle);
+          }
+        }).addTo(map);
+        break;
+      case false:
+        map.eachLayer(function (layer) {
+          if (layer instanceof L.CircleMarker) {
+              layer.remove()
+          }
+        });
+        break;
+      default:
+        break;
+    }
+  }, [map]);
+
   return (
     <main id='mainPart'>
       <div className='mapPart'>
@@ -94,17 +126,24 @@ function Map() {
                   <Marker position={dzs6}/>
                 </LayerGroup>
               </LayersControl.Overlay>
-            </LayersControl>
+            </LayersControl>          
           </MapContainer>
         </div>
         <Legend/>
       </div>
       <div className='mapButtons'>
         <div className='mapButton1'>
-              {map ? <DisplayCycleTraffic map={map} /> : null}   
-        </div>
+          {map ? <DisplayCycleTraffic map={map} /> : null}   
+        </div> 
         <div className='mapButton2'> 
-            {map ? <DisplayPosition map={map} /> : null}  
+          {map ? <DisplayPosition map={map} /> : null}  
+        </div>
+        <div className='mapButton3'> 
+          <label className="switch">
+            <input type="checkbox" id="cb1" onClick={cycleTraffic}/>
+            <span className="slider round"/>
+          </label>
+          <p id="cycle">Radverkehr</p>
         </div>
       </div>
     </main>
