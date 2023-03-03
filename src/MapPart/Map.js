@@ -80,7 +80,7 @@ function DisplayDzs({ map }) {
 
   return (
   
-    <div className='mapBtn3'>
+    <div className='mapBtn2'>
       <label className="switch">
         <input type="checkbox" id="cb2" onClick={dzs}/>
         <span className="slider round"/>
@@ -99,8 +99,8 @@ function DisplayPosition({ map }) {
   }, [map]);
   
   return (
-    <div className='mapBtn2'>
-      <button id='btn2' onClick={centerMap}>Karte zentrieren</button>
+    <div className='mapBtn3'>
+      <button id='btn3' onClick={centerMap}>Karte zentrieren</button>
     </div>
   )
 }

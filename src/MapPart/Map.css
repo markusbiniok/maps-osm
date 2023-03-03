@@ -26,7 +26,7 @@
   align-items: center;
 }
 
-.mapBtn1, .mapBtn3 {
+.mapBtn1, .mapBtn2 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +35,7 @@
   font-size: 1rem;
 }
 
-.mapBtn1 > p, .mapBtn3 > p {
+.mapBtn1 > p, .mapBtn2 > p {
   margin-left: 10px;
 }
 
@@ -43,7 +43,7 @@
   margin-left: 30px; 
 }
 
-#btn2 {
+#btn3 {
   padding: 6px 18px;
   border: unset;
   border-radius: 15px;
@@ -59,7 +59,7 @@
   cursor: pointer;
 }
 
-#btn2::before {
+#btn3::before {
   content: "";
   position: absolute;
   top: 0;
@@ -72,11 +72,11 @@
   transition: all 400ms;
 }
 
-#btn2:hover {
+#btn3:hover {
   color: white;
 }
  
-#btn2:hover::before {
+#btn3:hover::before {
   width: 100%;
 }
 
