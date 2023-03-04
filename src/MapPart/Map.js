@@ -4,7 +4,7 @@ import testData from './testData.json';
 
 import React, { useCallback, useState } from 'react';
 import L from 'leaflet';
-import { MapContainer, TileLayer, ZoomControl, Marker, LayersControl, LayerGroup } from 'react-leaflet';
+import { MapContainer, TileLayer, ZoomControl } from 'react-leaflet';
 
 
 const mapCenter = [51.336, 12.3730747];
@@ -58,12 +58,67 @@ function DisplayCycleTraffic({ map }) {
 }
 
 function DisplayDzs({ map }) {
-  
+
   const dzs = useCallback(() => {
+    const dzs1 = [51.339290, 12.345644]; //Jahnallee
+    const dzs2 = [51.346394, 12.376698]; //Gerberstraße
+    const dzs3 = [51.326745, 12.373747]; //Karl-Liebknecht-Straße
+    const dzs4 = [51.334458, 12.399261]; //Lene-Voigt-Park
+    const dzs5 = [51.335879, 12.367335]; //Manetstraße
+    const dzs6 = [51.320706, 12.386071]; //Semmelweisstraße
     var el = document.getElementById('cb2');
     switch (el.checked) {
       case true:
         //method to show marker of all dzs
+        var marker1 = L.marker(dzs1).addTo(map);
+        var marker2 = L.marker(dzs2).addTo(map);
+        var marker3 = L.marker(dzs3).addTo(map);
+        var marker4 = L.marker(dzs4).addTo(map);
+        var marker5 = L.marker(dzs5).addTo(map);
+        var marker6 = L.marker(dzs6).addTo(map);
+        
+        marker1.bindPopup("Jahnallee");
+        marker1.on('mouseover', function (e) {
+          this.openPopup();
+        });
+        marker1.on('mouseout', function (e) {
+            this.closePopup();
+        });
+        marker2.bindPopup("Gerberstraße");
+        marker2.on('mouseover', function (e) {
+          this.openPopup();
+        });
+        marker2.on('mouseout', function (e) {
+            this.closePopup();
+        });
+        marker3.bindPopup("Karl-Liebknecht-Straße");
+        marker3.on('mouseover', function (e) {
+          this.openPopup();
+        });
+        marker3.on('mouseout', function (e) {
+            this.closePopup();
+        });
+        marker4.bindPopup("Lene-Voigt-Park");
+        marker4.on('mouseover', function (e) {
+          this.openPopup();
+        });
+        marker4.on('mouseout', function (e) {
+            this.closePopup();
+        });
+        marker5.bindPopup("Manetstraße");
+        marker5.on('mouseover', function (e) {
+          this.openPopup();
+        });
+        marker5.on('mouseout', function (e) {
+            this.closePopup();
+        });
+        marker6.bindPopup("Semmelweisstraße");
+        marker6.on('mouseover', function (e) {
+          this.openPopup();
+        });
+        marker6.on('mouseout', function (e) {
+            this.closePopup();
+        });
         break;
       case false:
         //method to remove all marker of all dzs
@@ -108,12 +163,6 @@ function DisplayPosition({ map }) {
 function Map() {
 
   const [map, setMap] = useState(null); 
-  const dzs1 = [51.339290, 12.345644]; //Jahnallee
-  const dzs2 = [51.346394, 12.376698]; //Gerberstraße
-  const dzs3 = [51.326745, 12.373747]; //Karl-Liebknecht-Straße
-  const dzs4 = [51.334458, 12.399261]; //Lene-Voigt-Park
-  const dzs5 = [51.335879, 12.367335]; //Manetstraße
-  const dzs6 = [51.320706, 12.386071]; //Semmelweisstraße
 
   /*var heatmap = h337.create({
     container: document.getElementsByClassName('map')
@@ -124,9 +173,6 @@ function Map() {
     data: [{x: 10, y: 15, value: 5}]
   });*/
 
-
-
-
   return (
     <main id='mainPart'>
       <div className='mapPart'>
@@ -136,19 +182,7 @@ function Map() {
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url='https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png'
             />
-            <ZoomControl position='bottomright'/>
-            <LayersControl position="topright">
-              <LayersControl.Overlay name="Dauerzählstellen">
-                <LayerGroup>
-                  <Marker position={dzs1}/>
-                  <Marker position={dzs2}/>
-                  <Marker position={dzs3}/>
-                  <Marker position={dzs4}/>
-                  <Marker position={dzs5}/>
-                  <Marker position={dzs6}/>
-                </LayerGroup>
-              </LayersControl.Overlay>
-            </LayersControl>          
+            <ZoomControl position='bottomright'/>       
           </MapContainer>
         </div>
         <Legend/>
@@ -169,6 +203,3 @@ function Map() {
 }
 
 export default Map;
-
-
-//<CircleMarker center={[51.3396955, 12.376]} /> 
