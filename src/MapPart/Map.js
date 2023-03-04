@@ -66,7 +66,9 @@ function DisplayDzs({ map }) {
     const dzs4 = [51.334458, 12.399261]; //Lene-Voigt-Park
     const dzs5 = [51.335879, 12.367335]; //Manetstraße
     const dzs6 = [51.320706, 12.386071]; //Semmelweisstraße
+
     var el = document.getElementById('cb2');
+    
     switch (el.checked) {
       case true:
         //method to show marker of all dzs
