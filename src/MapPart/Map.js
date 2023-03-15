@@ -1,6 +1,7 @@
 import './Map.css';
 import Legend from './Legend.js'
 import testData from './testData.json';
+import cycleData from './Radmengen_21-22.geojson';
 
 import React, { useCallback, useState } from 'react';
 import L from 'leaflet';
@@ -11,34 +12,17 @@ const mapCenter = [51.336, 12.3730747];
 const mapZoom = 14;
 
 
-//show cycle traffic
-function DisplayCycleTraffic({ map }) {
+//show demo-cycle-traffic
+function DisplayDemoCycleTraffic({ map }) {
   
-  const cycleTraffic = useCallback(() => {
+  const demoCycleTraffic = useCallback(() => {
     var el = document.getElementById('cb1');
     switch (el.checked) {
       case true:
-        var markerStyle = {
-          radius: 1,
-          fillColor: '#ff0000',
-          fillOpacity: 1,
-          color: '#ff0000',
-          weight: 2, 
-          opacity: 1
-        }
-        //geoJSON points to mapLayer
-        L.geoJSON (testData, {
-          pointToLayer: function (feature, latlng) {
-            return L.circleMarker (latlng, markerStyle);
-          }
-        }).addTo(map);
+        L.geoJSON (testData).addTo(map);
         break;
       case false:
-        map.eachLayer(function (layer) {
-          if (layer instanceof L.CircleMarker) {
-            layer.remove()
-          }
-        });
+        console.log('false');
         break;
       default:
         break;
@@ -49,7 +33,36 @@ function DisplayCycleTraffic({ map }) {
   
     <div className='mapBtn1'>
       <label className="switch">
-        <input type="checkbox" id="cb1" onClick={cycleTraffic}/>
+        <input type="checkbox" id="cb1" onClick={demoCycleTraffic}/>
+        <span className="slider round"/>
+      </label>
+      <p>Demo Radverkehr</p>
+    </div>
+  )
+}
+
+//show demo-cycle-traffic
+function DisplayCycleTraffic({ map }) {
+  
+  const cycleTraffic = useCallback(() => {
+    var el = document.getElementById('cb3');
+    switch (el.checked) {
+      case true:
+        L.geoJSON(JSON.parse(cycleData)).addTo(map);
+        break;
+      case false:
+        console.log('false');
+        break;
+      default:
+        break;
+    }
+  }, [map]);
+
+  return (
+  
+    <div className='mapBtn3'>
+      <label className="switch">
+        <input type="checkbox" id="cb3" onClick={cycleTraffic}/>
         <span className="slider round"/>
       </label>
       <p>Radverkehr</p>
@@ -191,8 +204,11 @@ function Map() {
       </div>
       <div className='mapButtons'>
         <div>
-          {map ? <DisplayCycleTraffic map={map} /> : null}   
+          {map ? <DisplayDemoCycleTraffic map={map} /> : null}   
         </div> 
+        <div>
+          {map ? <DisplayCycleTraffic map={map} /> : null}   
+        </div>
         <div>
           {map ? <DisplayDzs map={map} /> : null}   
         </div> 
