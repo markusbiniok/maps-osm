@@ -1,10 +1,36 @@
 {
-"type": "FeatureCollection",
-"name": "Radmengen_21-22",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
-{ "type": "Feature", "properties": { "NO": 7, "JAHR": 2022, "Qu_Su_Rad": 1560.0 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 12.378896248786464, 51.345484901486195 ], [ 12.378810186939145, 51.344622292902237 ] ] ] } },
-{ "type": "Feature", "properties": { "NO": 10, "JAHR": 2022, "Qu_Su_Rad": 10.0 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 12.378896248786464, 51.345484901486195 ], [ 12.379777488903697, 51.346178644909827 ] ] ] } },
+    "type": "FeatureCollection",
+    "name": "Radmengen_21-22",
+    "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+    "features": [{
+        "type": "Feature", 
+        "properties": { 
+            "NO": 7, 
+            "JAHR": 2022, 
+            "Qu_Su_Rad": 1560.0 
+        }, 
+        "geometry": { 
+            "type": "MultiLineString", 
+            "coordinates": [ [ 
+                [ 12.378896248786464, 51.345484901486195 ], 
+                [ 12.378810186939145, 51.344622292902237 ] 
+                ] ] 
+        } 
+    },
+    {   "type": "Feature", 
+        "properties": { 
+            "NO": 10, 
+            "JAHR": 2022, 
+            "Qu_Su_Rad": 10.0 
+        }, 
+        "geometry": { 
+            "type": "MultiLineString", 
+            "coordinates": [ [ 
+                [ 12.378896248786464, 51.345484901486195 ], 
+                [ 12.379777488903697, 51.346178644909827 ] 
+            ] ] 
+        } 
+    },
 { "type": "Feature", "properties": { "NO": 15, "JAHR": 2022, "Qu_Su_Rad": 1200.0 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 12.37125816071789, 51.3398422039294 ], [ 12.370872992403681, 51.338351348779391 ] ] ] } },
 { "type": "Feature", "properties": { "NO": 57, "JAHR": 2021, "Qu_Su_Rad": 466.0 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 12.406522859380324, 51.368766470942845 ], [ 12.406664338652442, 51.368527787147414 ], [ 12.407652157853001, 51.363347039506635 ], [ 12.407721627513659, 51.363086134122362 ], [ 12.407216754813875, 51.362013780060842 ], [ 12.407142614571693, 51.361748880586497 ] ] ] } },
 { "type": "Feature", "properties": { "NO": 76, "JAHR": 2021, "Qu_Su_Rad": 2860.0 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 12.392805102883109, 51.345645748514386 ], [ 12.394207270172622, 51.344301757369877 ], [ 12.394705014173665, 51.343769762187065 ], [ 12.395045346914776, 51.343292227109742 ], [ 12.395235062932329, 51.342824188483881 ] ] ] } },

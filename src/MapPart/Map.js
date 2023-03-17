@@ -1,7 +1,7 @@
 import './Map.css';
 import Legend from './Legend.js'
 import testData from './testData.json';
-import cycleData from './Radmengen_21-22.geojson';
+import cycleData from './Radmengen_21-22.json';
 
 import React, { useCallback, useState } from 'react';
 import L from 'leaflet';
@@ -65,10 +65,17 @@ function DisplayCycleTraffic({ map }) {
     var el = document.getElementById('cb2');
     switch (el.checked) {
       case true:
-        L.geoJSON(cycleData).addTo(map);
+        var cycleDataStyle = {
+          color: 'red'
+        }
+        L.geoJSON(cycleData, cycleDataStyle).addTo(map);
         break;
       case false:
-        console.log('false');
+        map.eachLayer(function (layer) {
+          if (layer instanceof L.Polyline) {
+            layer.remove()
+          }
+        });
         break;
       default:
         break;
@@ -96,6 +103,9 @@ function DisplayDzs({ map }) {
     const dzs4 = [51.334458, 12.399261]; //Lene-Voigt-Park
     const dzs5 = [51.335879, 12.367335]; //Manetstraße
     const dzs6 = [51.320706, 12.386071]; //Semmelweisstraße
+    const dzs7 = [51.330434, 12.354736]; //Sachsenbrücke
+    const dzs8 = [51.338337, 12.383056]; //Grimmaischer Steinweg
+
 
     var el = document.getElementById('cb3');
     
@@ -108,6 +118,8 @@ function DisplayDzs({ map }) {
         var marker4 = L.marker(dzs4).addTo(map);
         var marker5 = L.marker(dzs5).addTo(map);
         var marker6 = L.marker(dzs6).addTo(map);
+        var marker7 = L.marker(dzs7).addTo(map);
+        var marker8 = L.marker(dzs8).addTo(map);
         
         marker1.bindPopup("Jahnallee");
         marker1.on('mouseover', function (e) {
@@ -149,6 +161,20 @@ function DisplayDzs({ map }) {
           this.openPopup();
         });
         marker6.on('mouseout', function (e) {
+            this.closePopup();
+        });
+        marker7.bindPopup("Sachsenbrücke");
+        marker7.on('mouseover', function (e) {
+          this.openPopup();
+        });
+        marker7.on('mouseout', function (e) {
+            this.closePopup();
+        });
+        marker8.bindPopup("Grimmaischer Steinweg");
+        marker8.on('mouseover', function (e) {
+          this.openPopup();
+        });
+        marker8.on('mouseout', function (e) {
             this.closePopup();
         });
         break;
@@ -195,6 +221,8 @@ function DisplayPosition({ map }) {
 function Map() {
 
   const [map, setMap] = useState(null); 
+
+  
 
   /*var heatmap = h337.create({
     container: document.getElementsByClassName('map')
