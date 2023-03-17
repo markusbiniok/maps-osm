@@ -2,14 +2,9 @@ import './Map.css';
 import Legend from './Legend.js'
 import testData from './testData.json';
 import cycleData from './Radmengen_21-22.json';
-
 import React, { useCallback, useState } from 'react';
 import L from 'leaflet';
 import { MapContainer, TileLayer, ZoomControl } from 'react-leaflet';
-
-
-const mapCenter = [51.336, 12.3730747];
-const mapZoom = 14;
 
 
 //show demo-cycle-traffic
@@ -105,7 +100,6 @@ function DisplayDzs({ map }) {
     const dzs6 = [51.320706, 12.386071]; //Semmelweisstraße
     const dzs7 = [51.330434, 12.354736]; //Sachsenbrücke
     const dzs8 = [51.338337, 12.383056]; //Grimmaischer Steinweg
-
 
     var el = document.getElementById('cb3');
     
@@ -205,6 +199,10 @@ function DisplayDzs({ map }) {
 
 //from https://react-leaflet.js.org/docs/example-external-state/
 //center map
+
+const mapCenter = [51.336, 12.3730747];
+const mapZoom = 14;
+
 function DisplayPosition({ map }) {
 
   const centerMap = useCallback(() => {
@@ -221,8 +219,6 @@ function DisplayPosition({ map }) {
 function Map() {
 
   const [map, setMap] = useState(null); 
-
-  
 
   /*var heatmap = h337.create({
     container: document.getElementsByClassName('map')
