@@ -19,10 +19,27 @@ function DisplayDemoCycleTraffic({ map }) {
     var el = document.getElementById('cb1');
     switch (el.checked) {
       case true:
-        L.geoJSON (testData).addTo(map);
+        var markerStyle = {
+          radius: 1,
+          fillColor: '#ff0000',
+          fillOpacity: 1,
+          color: '#ff0000',
+          weight: 2, 
+          opacity: 1
+        }
+        //geoJSON points to mapLayer
+        L.geoJSON (testData, {
+          pointToLayer: function (feature, latlng) {
+            return L.circleMarker (latlng, markerStyle);
+          }
+        }).addTo(map);
         break;
       case false:
-        console.log('false');
+        map.eachLayer(function (layer) {
+          if (layer instanceof L.CircleMarker) {
+            layer.remove()
+          }
+        });
         break;
       default:
         break;
@@ -45,10 +62,10 @@ function DisplayDemoCycleTraffic({ map }) {
 function DisplayCycleTraffic({ map }) {
   
   const cycleTraffic = useCallback(() => {
-    var el = document.getElementById('cb3');
+    var el = document.getElementById('cb2');
     switch (el.checked) {
       case true:
-        L.geoJSON(JSON.parse(cycleData)).addTo(map);
+        L.geoJSON(cycleData).addTo(map);
         break;
       case false:
         console.log('false');
@@ -60,9 +77,9 @@ function DisplayCycleTraffic({ map }) {
 
   return (
   
-    <div className='mapBtn3'>
+    <div className='mapBtn2'>
       <label className="switch">
-        <input type="checkbox" id="cb3" onClick={cycleTraffic}/>
+        <input type="checkbox" id="cb2" onClick={cycleTraffic}/>
         <span className="slider round"/>
       </label>
       <p>Radverkehr</p>
@@ -80,7 +97,7 @@ function DisplayDzs({ map }) {
     const dzs5 = [51.335879, 12.367335]; //Manetstraße
     const dzs6 = [51.320706, 12.386071]; //Semmelweisstraße
 
-    var el = document.getElementById('cb2');
+    var el = document.getElementById('cb3');
     
     switch (el.checked) {
       case true:
@@ -150,9 +167,9 @@ function DisplayDzs({ map }) {
 
   return (
   
-    <div className='mapBtn2'>
+    <div className='mapBtn3'>
       <label className="switch">
-        <input type="checkbox" id="cb2" onClick={dzs}/>
+        <input type="checkbox" id="cb3" onClick={dzs}/>
         <span className="slider round"/>
       </label>
       <p>Dauerzählstellen</p>
