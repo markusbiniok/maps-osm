@@ -92,14 +92,17 @@ function DisplayCycleTraffic({ map }) {
 function DisplayDzs({ map }) {
 
   const dzs = useCallback(() => {
-    const dzs1 = [51.339290, 12.345644]; //Jahnallee
+    const dzs1 = [51.361892, 12.367823]; //Georg-Schumann-Straße
     const dzs2 = [51.346394, 12.376698]; //Gerberstraße
-    const dzs3 = [51.326745, 12.373747]; //Karl-Liebknecht-Straße
-    const dzs4 = [51.334458, 12.399261]; //Lene-Voigt-Park
-    const dzs5 = [51.335879, 12.367335]; //Manetstraße
-    const dzs6 = [51.320706, 12.386071]; //Semmelweisstraße
-    const dzs7 = [51.330434, 12.354736]; //Sachsenbrücke
-    const dzs8 = [51.338337, 12.383056]; //Grimmaischer Steinweg
+    const dzs3 = [51.338337, 12.383056]; //Grimmaischer Steinweg
+    const dzs4 = [51.339290, 12.345644]; //Jahnallee
+    const dzs5 = [51.326745, 12.373747]; //Karl-Liebknecht-Straße
+    const dzs6 = [51.334458, 12.399261]; //Lene-Voigt-Park
+    const dzs7 = [51.327305, 12.307163]; //Lützner Straße
+    const dzs8 = [51.335879, 12.367335]; //Manetstraße
+    const dzs9 = [51.330434, 12.354736]; //Sachsenbrücke
+    const dzs10 = [51.320706, 12.386071]; //Semmelweisstraße
+    const dzs11 = [51.340034, 12.408337]; //Wurzner Straße
 
     var el = document.getElementById('cb3');
     
@@ -114,8 +117,11 @@ function DisplayDzs({ map }) {
         var marker6 = L.marker(dzs6).addTo(map);
         var marker7 = L.marker(dzs7).addTo(map);
         var marker8 = L.marker(dzs8).addTo(map);
+        var marker9 = L.marker(dzs9).addTo(map);
+        var marker10 = L.marker(dzs10).addTo(map);
+        var marker11 = L.marker(dzs11).addTo(map);
         
-        marker1.bindPopup("Jahnallee");
+        marker1.bindPopup("Georg-Schumann-Straße");
         marker1.on('mouseover', function (e) {
           this.openPopup();
         });
@@ -129,46 +135,67 @@ function DisplayDzs({ map }) {
         marker2.on('mouseout', function (e) {
             this.closePopup();
         });
-        marker3.bindPopup("Karl-Liebknecht-Straße");
+        marker3.bindPopup("Grimmaischer Steinweg");
         marker3.on('mouseover', function (e) {
           this.openPopup();
         });
         marker3.on('mouseout', function (e) {
             this.closePopup();
         });
-        marker4.bindPopup("Lene-Voigt-Park");
+        marker4.bindPopup("Jahnallee");
         marker4.on('mouseover', function (e) {
           this.openPopup();
         });
         marker4.on('mouseout', function (e) {
             this.closePopup();
         });
-        marker5.bindPopup("Manetstraße");
+        marker5.bindPopup("Karl-Liebknecht-Straße");
         marker5.on('mouseover', function (e) {
           this.openPopup();
         });
         marker5.on('mouseout', function (e) {
             this.closePopup();
         });
-        marker6.bindPopup("Semmelweisstraße");
+        marker6.bindPopup("Lene-Voigt-Park");
         marker6.on('mouseover', function (e) {
           this.openPopup();
         });
         marker6.on('mouseout', function (e) {
             this.closePopup();
         });
-        marker7.bindPopup("Sachsenbrücke");
+        marker7.bindPopup("Lützner Straße");
         marker7.on('mouseover', function (e) {
           this.openPopup();
         });
         marker7.on('mouseout', function (e) {
             this.closePopup();
         });
-        marker8.bindPopup("Grimmaischer Steinweg");
+        marker8.bindPopup("Manetstraße");
         marker8.on('mouseover', function (e) {
           this.openPopup();
         });
         marker8.on('mouseout', function (e) {
+            this.closePopup();
+        });
+        marker9.bindPopup("Sachsenbrücke");
+        marker9.on('mouseover', function (e) {
+          this.openPopup();
+        });
+        marker9.on('mouseout', function (e) {
+            this.closePopup();
+        });
+        marker10.bindPopup("Semmelweisstraße");
+        marker10.on('mouseover', function (e) {
+          this.openPopup();
+        });
+        marker10.on('mouseout', function (e) {
+            this.closePopup();
+        });
+        marker11.bindPopup("Wurzner Straße");
+        marker11.on('mouseover', function (e) {
+          this.openPopup();
+        });
+        marker11.on('mouseout', function (e) {
             this.closePopup();
         });
         break;
