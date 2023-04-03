@@ -230,7 +230,7 @@ function DisplayDzs({ map }) {
 const mapCenter = [51.336, 12.3730747];
 const mapZoom = 14;
 
-function DisplayPosition({ map }) {
+function MapCenter({ map }) {
 
   const centerMap = useCallback(() => {
     map.setView(mapCenter, mapZoom)
@@ -239,6 +239,36 @@ function DisplayPosition({ map }) {
   return (
     <div className='mapBtn3'>
       <button id='btn3' onClick={centerMap}>Karte zentrieren</button>
+    </div>
+  )
+}
+
+function MapClear({ map }) {
+
+  const clearMap = useCallback(() => {
+    map.eachLayer(function (layer) {
+      if (layer instanceof L.Marker) {
+        layer.remove()
+      }
+    });
+    map.eachLayer(function (layer) {
+      if (layer instanceof L.Polyline) {
+        layer.remove()
+      }
+    });
+    map.eachLayer(function (layer) {
+      if (layer instanceof L.CircleMarker) {
+        layer.remove()
+      }
+    });
+    document.getElementById('cb1').checked = false;
+    document.getElementById('cb2').checked = false;
+    document.getElementById('cb3').checked = false;
+  }, [map]);
+  
+  return (
+    <div className='mapBtn4'>
+      <button id='btn4' onClick={clearMap}>clear map</button>
     </div>
   )
 }
@@ -281,7 +311,10 @@ function Map() {
           {map ? <DisplayDzs map={map} /> : null}   
         </div> 
         <div> 
-          {map ? <DisplayPosition map={map} /> : null}  
+          {map ? <MapCenter map={map} /> : null}  
+        </div>
+        <div> 
+          {map ? <MapClear map={map} /> : null}  
         </div>
       </div>
     </main>
