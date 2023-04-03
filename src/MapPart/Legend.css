@@ -1,7 +1,8 @@
 .legend {
-    margin-left: 20px;
-    padding: 10px;
+    margin-left: 15px;
+    padding: 0px 10px 0px 10px;
     width: 100%;
+    height: 85vh;
     border-radius: 15px;
     background-color: #f4faff;
     color: black;
@@ -18,9 +19,9 @@
   }
   
   .pathOptions {
-    margin-bottom: 40px;
     display: grid;
     grid-gap: 10px;
+    padding-left: 10px;
     width: 100%;
     height: auto;
     grid-template-columns: 1fr 1fr;
@@ -33,19 +34,21 @@
   }
   
   .streetInfra {
-    margin-bottom: 40px;
     display: grid;
     grid-gap: 10px;
+    padding-left: 10px;
     width: 100%;
     height: auto;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(7, 1fr);
     grid-template-areas: 
       "span5 p5"
       "span6 p6"
       "span7 p7"
       "span8 p8"
-      "span9 p9";
+      "span9 p9"
+      "span10 p10"
+      "span11 p11";
   }
   
   #span1 {
@@ -53,8 +56,8 @@
     height: 0.5em; 
     width: 2em; 
     border-top: solid #0000ce 3px; 
-    grid-area: span1;
     align-self: center;
+    grid-area: span1;
   }
   
   #span2 {
@@ -62,8 +65,8 @@
     height: 0.5em; 
     width: 2em; 
     border-top: solid #0060ff 3px; 
-    grid-area: span2;
     align-self: center;
+    grid-area: span2;
   }
   
   #span3 {
@@ -124,13 +127,31 @@
     height: 0.5em; 
     background-color: blue; 
     border-radius: 50%;
-    grid-area: span8;
     align-self: center;
+    grid-area: span8;
   }
   
   #span9 {
     margin-left: 7px;
     grid-area: span9;
+  }
+
+  #span10 {
+    display: inline-block; 
+    height: 1em; 
+    width: 2em; 
+    background-color: #5500ff; 
+    opacity: 0.5;
+    grid-area: span10;
+  }
+
+  #span11 {
+    display: inline-block; 
+    height: 1em; 
+    width: 2em; 
+    background-color: #0000ff; 
+    opacity: 0.5;
+    grid-area: span11;
   }
   
   #p1 {
@@ -167,4 +188,12 @@
   
   #p9 {
     grid-area: p9;
+  }
+
+  #p10 {
+    grid-area: p10;
+  }
+
+  #p11 {
+    grid-area: p11;
   }

@@ -28,7 +28,9 @@ function Legend() {
         <div> 
           <img id='span9' src={bicycle1} alt='bicycle icon'/>
         </div>
-        <div id='p9'>Fahrradgeschäft</div>          
+        <div id='p9'>Fahrradgeschäft</div>
+        <div id='span10'/><div id='p10'>regionale Radroute</div> 
+        <div id='span11'/><div id='p11'>lokale Radroute</div>                     
       </div>
     </div>
     )
