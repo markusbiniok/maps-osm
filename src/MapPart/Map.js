@@ -269,7 +269,7 @@ function MapClear({ map }) {
   
   return (
     <div className='mapBtn4'>
-      <button id='btn4' onClick={clearMap}>clear map</button>
+      <button id='btn4' onClick={clearMap}>Karte klarmachen</button>
     </div>
   )
 }
