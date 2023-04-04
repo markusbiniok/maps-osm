@@ -19,7 +19,6 @@
   }
   
   .pathOptions {
-    border: 1px solid green;
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 1fr 1fr;
@@ -47,7 +46,6 @@
   }
   
   #span1 {
-    border: 1px solid red;
     display: inline-block; 
     height: 0.5em; 
     width: 2em; 
@@ -151,7 +149,6 @@
   }
   
   #p1 {
-    border: 1px solid purple;
     grid-area: p1;
   }
   
