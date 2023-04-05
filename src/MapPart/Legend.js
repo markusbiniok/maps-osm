@@ -32,6 +32,10 @@ function Legend() {
         <div id='span10'/><div id='p10'>regionale Radroute</div> 
         <div id='span11'/><div id='p11'>lokale Radroute</div>                     
       </div>
+      <p id='ut'>Links</p>
+      <div className='hyperlink'>
+        <a id='l1' href="https://geoportal.leipzig.de/arcgis/apps/experiencebuilder/experience/?id=4fd2c688fa754d55903dcb8acf9dafa7&page=page_0" target='_blank' rel='noopener noreferrer'>Übersicht der Dauerzählstellen Leipzig</a>                    
+      </div>
     </div>
     )
 }
