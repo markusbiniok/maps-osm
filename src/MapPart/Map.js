@@ -53,7 +53,7 @@ function DisplayDemoCycleTraffic({ map }) {
   )
 }
 
-//show demo-cycle-traffic
+//show cycle-traffic
 //manual counting on certain sections of the road network in the city of Leipzig
 function DisplayCycleTraffic({ map }) {
   
