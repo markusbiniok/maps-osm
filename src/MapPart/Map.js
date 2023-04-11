@@ -2,15 +2,18 @@ import './Map.css';
 import Legend from './Legend.js'
 import testData from './testData.json';
 import cycleData from './Radmengen_21-22.json';
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import L from 'leaflet';
-import { MapContainer, TileLayer, ZoomControl } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 
+
+const mapCenter = [51.336, 12.3730747];
+const mapZoom = 14;
 
 //show demo-cycle-traffic
-function DisplayDemoCycleTraffic({ map }) {
-  
-  const demoCycleTraffic = useCallback(() => {
+function DisplayDemoCycleTraffic({ map }) //external state
+{
+  const demoCycleTraffic = () => {
     var el = document.getElementById('cb1');
     switch (el.checked) {
       case true:
@@ -39,7 +42,7 @@ function DisplayDemoCycleTraffic({ map }) {
       default:
         break;
     }
-  }, [map]);
+  };
 
   return (
   
@@ -57,7 +60,7 @@ function DisplayDemoCycleTraffic({ map }) {
 //manual counting on certain sections of the road network in the city of Leipzig
 function DisplayCycleTraffic({ map }) {
   
-  const cycleTraffic = useCallback(() => {
+  const cycleTraffic = () => {
     var el = document.getElementById('cb2');
     switch (el.checked) {
       case true:
@@ -76,7 +79,7 @@ function DisplayCycleTraffic({ map }) {
       default:
         break;
     }
-  }, [map]);
+  };
 
   return (
   
@@ -92,7 +95,7 @@ function DisplayCycleTraffic({ map }) {
 
 function DisplayDzs({ map }) {
 
-  const dzs = useCallback(() => {
+  const dzs = () => {
     const dzs1 = [51.361892, 12.367823]; //Georg-Schumann-Straße
     const dzs2 = [51.346394, 12.376698]; //Gerberstraße
     const dzs3 = [51.338337, 12.383056]; //Grimmaischer Steinweg
@@ -211,7 +214,7 @@ function DisplayDzs({ map }) {
       default:
         break;
     }
-  }, [map]);
+  };
 
   return (
   
@@ -227,15 +230,11 @@ function DisplayDzs({ map }) {
 
 //from https://react-leaflet.js.org/docs/example-external-state/
 //center map
-
-const mapCenter = [51.336, 12.3730747];
-const mapZoom = 14;
-
 function MapCenter({ map }) {
 
-  const centerMap = useCallback(() => {
+  const centerMap = () => {
     map.setView(mapCenter, mapZoom)
-  }, [map]);
+  };
   
   return (
     <div className='mapBtn3'>
@@ -246,7 +245,7 @@ function MapCenter({ map }) {
 
 function MapClear({ map }) {
 
-  const clearMap = useCallback(() => {
+  const clearMap = () => {
     map.eachLayer(function (layer) {
       if (layer instanceof L.Marker) {
         layer.remove()
@@ -265,7 +264,7 @@ function MapClear({ map }) {
     document.getElementById('cb1').checked = false;
     document.getElementById('cb2').checked = false;
     document.getElementById('cb3').checked = false;
-  }, [map]);
+  };
   
   return (
     <div className='mapBtn4'>
@@ -274,29 +273,24 @@ function MapClear({ map }) {
   )
 }
 
+
 function Map() {
 
   const [map, setMap] = useState(null); 
 
-  /*var heatmap = h337.create({
-    container: document.getElementsByClassName('map')
-  });
-
-  heatmap.setData ({
-    max: 5,
-    data: [{x: 10, y: 15, value: 5}]
-  });*/
+  const createHeatmap = () => {
+    console.log('Button gedrückt!');
+  }
 
   return (
     <main id='mainPart'>
       <div className='mapPart'>
         <div className='map'>
-          <MapContainer ref={setMap} center={mapCenter} zoom={mapZoom} scrollWheelZoom={true} zoomControl={false}>
-            <TileLayer id='map'
+          <MapContainer ref={setMap} center={mapCenter} zoom={mapZoom} scrollWheelZoom={true} zoomControl={true}>
+          <TileLayer id='map'
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url='https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png'
             />
-            <ZoomControl position='bottomright'/>       
           </MapContainer>
         </div>
         <Legend/>
@@ -316,6 +310,9 @@ function Map() {
         </div>
         <div> 
           {map ? <MapClear map={map} /> : null}  
+        </div>
+        <div>
+          <button onClick={createHeatmap}>heatmap</button>
         </div>
       </div>
     </main>
