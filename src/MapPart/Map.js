@@ -2,9 +2,9 @@ import './Map.css';
 import Legend from './Legend.js'
 import testData from './testData.json';
 import cycleData from './Radmengen_21-22.json';
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import L from 'leaflet';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer, Popup, Marker, useMapEvents} from 'react-leaflet';
 
 
 const mapCenter = [51.336, 12.3730747];
@@ -278,6 +278,25 @@ function Map() {
 
   const [map, setMap] = useState(null); 
 
+  function LocationMarker() {
+    const [position, setPosition] = useState(null)
+    const map = useMapEvents({
+      click() {
+        map.locate()
+      },
+      locationfound(e) {
+        setPosition(e.latlng)
+        map.flyTo(e.latlng, map.getZoom()+2)
+      },
+    })
+  
+    return position === null ? null : (
+      <Marker position={position}>
+        <Popup>You are here</Popup>
+      </Marker>
+    )
+  }
+  
   const createHeatmap = () => {
     console.log('Button gedrückt!');
   }
@@ -291,6 +310,7 @@ function Map() {
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url='https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png'
             />
+            <LocationMarker/>
           </MapContainer>
         </div>
         <Legend/>
