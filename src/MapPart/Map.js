@@ -289,7 +289,7 @@ function Map() {
         map.flyTo(e.latlng, map.getZoom()+2)
       },
     })
-  
+
     return position === null ? null : (
       <Marker position={position}>
         <Popup>You are here</Popup>
