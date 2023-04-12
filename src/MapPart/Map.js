@@ -273,34 +273,30 @@ function MapClear({ map }) {
 }
 
 
-function DisplayLocation({ map }) {
+function Map() {
 
+  const [map, setMap] = useState(null); 
   const [position, setPosition] = useState(null);
+
+
+  function DisplayGeolocation () {
+    return position === null ? null : (
+      <Marker position={position} eventHandlers={{
+        mouseover: (event) => event.target.openPopup(),
+        mouseout: (event) => event.target.closePopup(),
+      }}>
+        <Popup>Sie sind hier</Popup>
+      </Marker>
+    )
+  }
 
   const showGeolocation = () => {
     map.locate().on("locationfound", function (e) {
       setPosition(e.latlng);
       map.flyTo(e.latlng, map.getZoom()+2);
     });
+  }
 
-    return position === null ? null : (
-      <Marker position={position}>
-        <Popup>You are here</Popup>
-      </Marker>
-    )
-  };
-  
-  return (
-    <div className='mapBtn5'>
-      <button id='btn5' onClick={showGeolocation}>Standort anzeigen</button>
-    </div>
-  )
-}
-
-
-function Map() {
-
-  const [map, setMap] = useState(null); 
   
   const createHeatmap = () => {
     console.log('Button gedrückt!');
@@ -315,14 +311,12 @@ function Map() {
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url='https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png'
             />
+            <DisplayGeolocation/>
           </MapContainer>
         </div>
         <Legend/>
       </div>
-      <div className='mapButtons'>
-        <div>
-          {map ? <DisplayLocation map={map} /> : null}   
-        </div> 
+      <div className='mapButtons'> 
         <div>
           {map ? <DisplayDemoCycleTraffic map={map} /> : null}   
         </div> 
@@ -337,6 +331,9 @@ function Map() {
         </div>
         <div> 
           {map ? <MapClear map={map} /> : null}  
+        </div>
+        <div>
+          <button onClick={showGeolocation}>Standort anzeigen</button> 
         </div>
         <div>
           <button onClick={createHeatmap}>heatmap</button>
