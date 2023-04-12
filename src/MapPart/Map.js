@@ -5,6 +5,7 @@ import cycleData from './Radmengen_21-22.json';
 import React, {  useState } from 'react';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Popup, Marker} from 'react-leaflet';
+import centerIcon from './icon_center.png';
 
 const mapCenter = [51.336, 12.3730747];
 const mapZoom = 14;
@@ -16,7 +17,7 @@ function DisplayDemoCycleTraffic({ map }) //external state
     var el = document.getElementById('cb1');
     switch (el.checked) {
       case true:
-        var markerStyle = {
+        var markerStyle1 = {
           radius: 1,
           fillColor: '#ff0000',
           fillOpacity: 1,
@@ -27,7 +28,7 @@ function DisplayDemoCycleTraffic({ map }) //external state
         //geoJSON points to mapLayer
         L.geoJSON (testData, {
           pointToLayer: function (feature, latlng) {
-            return L.circleMarker (latlng, markerStyle);
+            return L.circleMarker (latlng, markerStyle1);
           }
         }).addTo(map);
         break;
@@ -236,8 +237,8 @@ function MapCenter({ map }) {
   };
   
   return (
-    <div className='mapBtn3'>
-      <button id='btn3' onClick={centerMap}>Karte zentrieren</button>
+    <div className="mapBtn5">
+      <button type="button" class="btnCenter" onClick={centerMap}><img src={centerIcon} width="30" height="30" alt ="center icon"/></button>
     </div>
   )
 }
@@ -267,7 +268,7 @@ function MapClear({ map }) {
   
   return (
     <div className='mapBtn4'>
-      <button id='btn4' onClick={clearMap}>Karte klarmachen</button>
+      <button id='btn4' onClick={clearMap}>clear map</button>
     </div>
   )
 }
@@ -280,6 +281,7 @@ function Map() {
 
 
   function DisplayGeolocation () {
+
     return position === null ? null : (
       <Marker position={position} eventHandlers={{
         mouseover: (event) => event.target.openPopup(),
@@ -304,6 +306,15 @@ function Map() {
 
   return (
     <main id='mainPart'>
+      <div className='header'>
+        <div className='caption'>Radverkehrsdaten und Radwegnutzung</div>
+        <div> 
+          {map ? <MapClear map={map} /> : null}  
+        </div>
+        <div> 
+          {map ? <MapCenter map={map} /> : null}  
+        </div>
+      </div>
       <div className='mapPart'>
         <div className='map'>
           <MapContainer ref={setMap} center={mapCenter} zoom={mapZoom} scrollWheelZoom={true} zoomControl={true}>
@@ -316,7 +327,7 @@ function Map() {
         </div>
         <Legend/>
       </div>
-      <div className='mapButtons'> 
+      <div className='dataButtons'> 
         <div>
           {map ? <DisplayDemoCycleTraffic map={map} /> : null}   
         </div> 
@@ -325,20 +336,17 @@ function Map() {
         </div>
         <div>
           {map ? <DisplayDzs map={map} /> : null}   
-        </div> 
-        <div> 
-          {map ? <MapCenter map={map} /> : null}  
         </div>
-        <div> 
-          {map ? <MapClear map={map} /> : null}  
-        </div>
+      </div>
+      <div className='mapButtons'>
+        
         <div>
-          <button onClick={showGeolocation}>Standort anzeigen</button> 
+          <button id='btn5' onClick={showGeolocation}>Standort anzeigen</button> 
         </div>
         <div>
           <button onClick={createHeatmap}>heatmap</button>
         </div>
-      </div>
+      </div>        
     </main>
   )
 }
