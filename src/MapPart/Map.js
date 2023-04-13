@@ -285,11 +285,9 @@ function MapClear({ map }) {
 function Heatmap({ map }) {
 
   const showHeatmap = () => {
-    L.HeatLayer([
-      [51.336, 12.3730747, 1.0] // lat, lng, intensity
-    ], {radius: 25}).addTo(map);
+    console.log('Button gedrückt!');
   }
-  
+
   return (
     <div className='btnHeatmap'>
       <button type="button" id='heatmapButton' className="btnHeatmap" onClick={showHeatmap}>Heatmap</button> 
