@@ -282,6 +282,7 @@ function MapClear({ map }) {
   )
 }
 
+//with heatmap.js plugin
 function Heatmap({ map }) {
 
   const showHeatmap = () => {
