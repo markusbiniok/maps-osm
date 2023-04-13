@@ -1,5 +1,5 @@
 import './Legend.css';
-import bicycle1 from './bicycle1.svg';
+import bicycle from './images/bicycle_legend.svg';
 
 
 function Legend() {
@@ -26,7 +26,7 @@ function Legend() {
         <div id='span7'/><div id='p7'>kein Kfz-Verkehr</div> 
         <div id='span8'/><div id='p8'>Fahrradabstellplatz</div> 
         <div> 
-          <img id='span9' src={bicycle1} alt='bicycle icon'/>
+          <img id='span9' src={bicycle} alt='bicycle icon'/>
         </div>
         <div id='p9'>Fahrradgeschäft</div>
         <div id='span10'/><div id='p10'>regionale Radrouten</div> 

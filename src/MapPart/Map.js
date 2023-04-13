@@ -6,8 +6,8 @@ import cycleData from './Radmengen_21-22.json';
 import React, {  useState } from 'react';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Popup, Marker} from 'react-leaflet';
-//import centerIcon from './icon_center.png';
-import locationIcon from './icon_location.png';
+//import centerIcon from '.images/icon_center.png';
+import locationIcon from './images/icon_location.png';
 
 
 const mapCenter = [51.336, 12.3730747];
@@ -20,7 +20,7 @@ function DisplayDemoCycleTraffic({ map }) //external state
     var el = document.getElementById('cb1');
     switch (el.checked) {
       case true:
-        var markerStyle1 = {
+        var markerDemoCycleTraffic = {
           radius: 1,
           fillColor: '#ff0000',
           fillOpacity: 1,
@@ -31,7 +31,7 @@ function DisplayDemoCycleTraffic({ map }) //external state
         //geoJSON points to mapLayer
         L.geoJSON (testData, {
           pointToLayer: function (feature, latlng) {
-            return L.circleMarker (latlng, markerStyle1);
+            return L.circleMarker (latlng, markerDemoCycleTraffic);
           }
         }).addTo(map);
         break;
@@ -116,9 +116,13 @@ function DisplayDzs({ map }) {
     switch (el.checked) {
       case true:
         //method to show marker of all dzs
+        var markerDzs = L.icon({
+          iconUrl: '.liniendiagramm.png',
+          iconSize: [25, 25]
+        });
         var marker1 = L.marker(dzs1).addTo(map);
         var marker2 = L.marker(dzs2).addTo(map);
-        var marker3 = L.marker(dzs3).addTo(map);
+        var marker3 = L.marker(dzs3, {icon: markerDzs}).addTo(map);
         var marker4 = L.marker(dzs4).addTo(map);
         var marker5 = L.marker(dzs5).addTo(map);
         var marker6 = L.marker(dzs6).addTo(map);
@@ -316,7 +320,7 @@ function Map() {
             {map ? <MapClear map={map} /> : null}  
           </div>
           <div>
-            <button type="button" id='loactionButton' class="btnLocation" onClick={showGeolocation}><img src={locationIcon} width="30" height="30" alt ="location icon"/></button> 
+            <button type="button" id='loactionButton' className="btnLocation" onClick={showGeolocation}><img src={locationIcon} width="30" height="30" alt ="location icon"/></button> 
           </div>
         </div>
       </div>
@@ -343,7 +347,7 @@ function Map() {
           {map ? <DisplayDzs map={map} /> : null}   
         </div>
         <div className='btnHeatmap'>
-          <button onClick={createHeatmap}>heatmap</button>
+          <button id='heatmapButton' onClick={createHeatmap}>Heatmap</button>
         </div>
       </div>        
     </main>
