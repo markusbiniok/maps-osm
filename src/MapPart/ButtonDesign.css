@@ -1,0 +1,123 @@
+#clearButton {
+  padding: 4px 11px;
+  border: unset;
+  border-radius: 15px;
+  color: #000000;
+  z-index: 1;
+  background: white;
+  position: relative;
+  font-family: 'Roboto';
+  font-weight: 800;
+  font-size: 1rem;
+  transition: all 250ms;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#clearButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 15px;
+  background-color: #e37578;
+  z-index: -1;
+  transition: all 400ms;
+}
+
+#clearButton:hover {
+  color: white;
+}
+ 
+#clearButton:hover::before {
+  width: 100%;
+}
+
+
+#loactionButton {
+	padding-top: 4px;
+	color: black;
+	border: none;
+	border-radius: 25px;
+	background-color: white;
+	transition: .4s;
+}
+
+#loactionButton:hover{
+	transform: scale(1.06);
+	background-color: #ffb31a;
+	cursor: pointer;
+}
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #c8d8e4;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 4.5px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+	background-color: #e37578 ;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+.btnCenter {
+	padding-top: 4px;
+	color: black;
+	border: none;
+	border-radius: 25px;
+	background-color: white;
+	transition: .4s;
+}
+
+.btnCenter:hover{
+	transform: scale(1.06);
+	background-color: #ffb31a;
+	cursor: pointer;
+}

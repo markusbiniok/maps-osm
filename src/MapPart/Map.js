@@ -1,11 +1,14 @@
 import './Map.css';
+import './ButtonDesign.css';
 import Legend from './Legend.js'
 import testData from './testData.json';
 import cycleData from './Radmengen_21-22.json';
 import React, {  useState } from 'react';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Popup, Marker} from 'react-leaflet';
-import centerIcon from './icon_center.png';
+//import centerIcon from './icon_center.png';
+import locationIcon from './icon_location.png';
+
 
 const mapCenter = [51.336, 12.3730747];
 const mapZoom = 14;
@@ -46,7 +49,7 @@ function DisplayDemoCycleTraffic({ map }) //external state
 
   return (
   
-    <div className='mapBtn1'>
+    <div className='btnDemoCycleTraffic'>
       <label className="switch">
         <input type="checkbox" id="cb1" onClick={demoCycleTraffic}/>
         <span className="slider round"/>
@@ -83,7 +86,7 @@ function DisplayCycleTraffic({ map }) {
 
   return (
   
-    <div className='mapBtn2'>
+    <div className='btnCycleTraffic'>
       <label className="switch">
         <input type="checkbox" id="cb2" onClick={cycleTraffic}/>
         <span className="slider round"/>
@@ -218,7 +221,7 @@ function DisplayDzs({ map }) {
 
   return (
   
-    <div className='mapBtn3'>
+    <div className='btnDzs'>
       <label className="switch">
         <input type="checkbox" id="cb3" onClick={dzs}/>
         <span className="slider round"/>
@@ -230,7 +233,7 @@ function DisplayDzs({ map }) {
 
 //from https://react-leaflet.js.org/docs/example-external-state/
 //center map
-function MapCenter({ map }) {
+/*function MapCenter({ map }) {
 
   const centerMap = () => {
     map.setView(mapCenter, mapZoom)
@@ -241,7 +244,7 @@ function MapCenter({ map }) {
       <button type="button" class="btnCenter" onClick={centerMap}><img src={centerIcon} width="30" height="30" alt ="center icon"/></button>
     </div>
   )
-}
+}*/
 
 function MapClear({ map }) {
 
@@ -267,8 +270,8 @@ function MapClear({ map }) {
   };
   
   return (
-    <div className='mapBtn4'>
-      <button id='btn4' onClick={clearMap}>clear map</button>
+    <div className='btnClear'>
+      <button id='clearButton' onClick={clearMap}>clear map</button>
     </div>
   )
 }
@@ -305,17 +308,19 @@ function Map() {
   }
 
   return (
-    <main id='mainPart'>
+    <main id='app'>
       <div className='header'>
         <div className='caption'>Radverkehrsdaten und Radwegnutzung</div>
-        <div> 
-          {map ? <MapClear map={map} /> : null}  
-        </div>
-        <div> 
-          {map ? <MapCenter map={map} /> : null}  
+        <div className='headerButtons'>
+          <div> 
+            {map ? <MapClear map={map} /> : null}  
+          </div>
+          <div>
+            <button type="button" id='loactionButton' class="btnLocation" onClick={showGeolocation}><img src={locationIcon} width="30" height="30" alt ="location icon"/></button> 
+          </div>
         </div>
       </div>
-      <div className='mapPart'>
+      <div className='main'>
         <div className='map'>
           <MapContainer ref={setMap} center={mapCenter} zoom={mapZoom} scrollWheelZoom={true} zoomControl={true}>
           <TileLayer id='map'
@@ -337,13 +342,7 @@ function Map() {
         <div>
           {map ? <DisplayDzs map={map} /> : null}   
         </div>
-      </div>
-      <div className='mapButtons'>
-        
-        <div>
-          <button id='btn5' onClick={showGeolocation}>Standort anzeigen</button> 
-        </div>
-        <div>
+        <div className='btnHeatmap'>
           <button onClick={createHeatmap}>heatmap</button>
         </div>
       </div>        
@@ -352,3 +351,9 @@ function Map() {
 }
 
 export default Map;
+
+/*
+<div> 
+  {map ? <MapCenter map={map} /> : null}  
+</div>
+*/

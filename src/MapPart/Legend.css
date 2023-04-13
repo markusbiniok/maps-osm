@@ -1,5 +1,4 @@
 .legend {
-  border: 1px solid purple;
   margin-left: 10px;
   padding: 0px 7px 0px 7px;
   width: 100%;
@@ -193,12 +192,12 @@
   grid-area: p11;
 }
 
-#l1 {
+#link1 {
   color: black;
   text-decoration: none;
 }
 
-#l1:hover {
+#link1:hover {
   color: green;
   text-decoration: underline;
 }

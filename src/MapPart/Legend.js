@@ -34,7 +34,7 @@ function Legend() {
       </div>
       <p id='ut'>Links</p>
       <div className='hyperlink'>
-        <a id='l1' href="https://geoportal.leipzig.de/arcgis/apps/experiencebuilder/experience/?id=4fd2c688fa754d55903dcb8acf9dafa7&page=page_0" target='_blank' rel='noopener noreferrer'>Dauerzählstellen Leipzig</a>                    
+        <a id='link1' href="https://geoportal.leipzig.de/arcgis/apps/experiencebuilder/experience/?id=4fd2c688fa754d55903dcb8acf9dafa7&page=page_0" target='_blank' rel='noopener noreferrer'>Dauerzählstellen Leipzig</a>                    
       </div>
     </div>
     )
