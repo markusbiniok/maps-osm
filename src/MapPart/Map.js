@@ -1,11 +1,11 @@
 import './Map.css';
 import './ButtonDesign.css';
-import Legend from './Legend.js'
-import testData from './testData.json';
-import cycleData from './Radmengen_21-22.json';
+import Legend from './Legend.js';
 import React, {  useState } from 'react';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Popup, Marker} from 'react-leaflet';
+import testData from './data/testData.json';
+import cycleData from './data/Radmengen_21-22.json';
 //import centerIcon from '.images/icon_center.png';
 import locationIcon from './images/icon_location.png';
 
@@ -22,9 +22,9 @@ function DisplayDemoCycleTraffic({ map }) //external state
       case true:
         var markerDemoCycleTraffic = {
           radius: 1,
-          fillColor: '#ff0000',
+          fillColor: '#8a1c82',
           fillOpacity: 1,
-          color: '#ff0000',
+          color: '#8a1c82',
           weight: 2, 
           opacity: 1
         }
@@ -116,21 +116,22 @@ function DisplayDzs({ map }) {
     switch (el.checked) {
       case true:
         //method to show marker of all dzs
-        var markerDzs = L.icon({
-          iconUrl: '.liniendiagramm.png',
-          iconSize: [25, 25]
+        //icon from https://www.flaticon.com/search?word=counter
+        const markerDzs = new L.Icon({
+          iconUrl: require('./images/icon_dzs.png'),
+          iconSize: [35, 35]
         });
-        var marker1 = L.marker(dzs1).addTo(map);
-        var marker2 = L.marker(dzs2).addTo(map);
+        var marker1 = L.marker(dzs1, {icon: markerDzs}).addTo(map);
+        var marker2 = L.marker(dzs2, {icon: markerDzs}).addTo(map);
         var marker3 = L.marker(dzs3, {icon: markerDzs}).addTo(map);
-        var marker4 = L.marker(dzs4).addTo(map);
-        var marker5 = L.marker(dzs5).addTo(map);
-        var marker6 = L.marker(dzs6).addTo(map);
-        var marker7 = L.marker(dzs7).addTo(map);
-        var marker8 = L.marker(dzs8).addTo(map);
-        var marker9 = L.marker(dzs9).addTo(map);
-        var marker10 = L.marker(dzs10).addTo(map);
-        var marker11 = L.marker(dzs11).addTo(map);
+        var marker4 = L.marker(dzs4, {icon: markerDzs}).addTo(map);
+        var marker5 = L.marker(dzs5, {icon: markerDzs}).addTo(map);
+        var marker6 = L.marker(dzs6, {icon: markerDzs}).addTo(map);
+        var marker7 = L.marker(dzs7, {icon: markerDzs}).addTo(map);
+        var marker8 = L.marker(dzs8, {icon: markerDzs}).addTo(map);
+        var marker9 = L.marker(dzs9, {icon: markerDzs}).addTo(map);
+        var marker10 = L.marker(dzs10, {icon: markerDzs}).addTo(map);
+        var marker11 = L.marker(dzs11, {icon: markerDzs}).addTo(map);
         
         marker1.bindPopup("Georg-Schumann-Straße");
         marker1.on('mouseover', function (e) {
@@ -271,6 +272,7 @@ function MapClear({ map }) {
     document.getElementById('cb1').checked = false;
     document.getElementById('cb2').checked = false;
     document.getElementById('cb3').checked = false;
+    map.setView(mapCenter, mapZoom);
   };
   
   return (
