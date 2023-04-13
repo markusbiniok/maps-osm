@@ -308,11 +308,6 @@ function Map() {
     });
   }
 
-  
-  const createHeatmap = () => {
-    console.log('Button gedrückt!');
-  }
-
   return (
     <main id='app'>
       <div className='header'>
@@ -349,7 +344,7 @@ function Map() {
           {map ? <DisplayDzs map={map} /> : null}   
         </div>
         <div className='btnHeatmap'>
-          <button id='heatmapButton' onClick={createHeatmap}>Heatmap</button>
+          <button id='heatmapButton'>Heatmap</button>
         </div>
       </div>        
     </main>
@@ -357,9 +352,3 @@ function Map() {
 }
 
 export default Map;
-
-/*
-<div> 
-  {map ? <MapCenter map={map} /> : null}  
-</div>
-*/
