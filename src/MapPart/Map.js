@@ -282,6 +282,21 @@ function MapClear({ map }) {
   )
 }
 
+function Heatmap({ map }) {
+
+  const showHeatmap = () => {
+    L.HeatLayer([
+      [51.336, 12.3730747, 1.0] // lat, lng, intensity
+    ], {radius: 25}).addTo(map);
+  }
+  
+  return (
+    <div className='btnHeatmap'>
+      <button type="button" id='heatmapButton' className="btnHeatmap" onClick={showHeatmap}>Heatmap</button> 
+    </div>
+  )
+}
+
 
 function Map() {
 
@@ -308,11 +323,15 @@ function Map() {
     });
   }
 
+
   return (
     <main id='app'>
       <div className='header'>
         <div className='caption'>Radverkehrsdaten und Radwegnutzung</div>
         <div className='headerButtons'>
+        <div> 
+            {map ? <Heatmap map={map} /> : null}  
+          </div>
           <div> 
             {map ? <MapClear map={map} /> : null}  
           </div>
