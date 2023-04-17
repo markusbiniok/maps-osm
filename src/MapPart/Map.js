@@ -18,8 +18,8 @@ const mapZoom = 14;
 function DisplayDemoCycleTraffic({ map }) //external state
 {
   const demoCycleTraffic = () => {
-    var el = document.getElementById('cb1');
-    switch (el.checked) {
+
+    switch (document.getElementById('cb1').checked) {
       case true:
         var markerDemoCycleTraffic = {
           radius: 1,
@@ -64,8 +64,8 @@ function DisplayDemoCycleTraffic({ map }) //external state
 function DisplayCycleTraffic({ map }) {
   
   const cycleTraffic = () => {
-    var el = document.getElementById('cb2');
-    switch (el.checked) {
+    
+    switch (document.getElementById('cb2').checked) {
       case true:
         var cycleDataStyle = {
           color: 'red'
@@ -110,9 +110,7 @@ function DisplayDzs({ map }) {
     const dzs10 = [51.320706, 12.386071]; //Semmelweisstraße
     const dzs11 = [51.340034, 12.408337]; //Wurzner Straße
 
-    var el = document.getElementById('cb3');
-    
-    switch (el.checked) {
+    switch (document.getElementById('cb3').checked) {
       case true:
         //method to show marker of all dzs
         //icon from https://www.flaticon.com/search?word=counter
@@ -234,6 +232,37 @@ function DisplayDzs({ map }) {
   )
 }
 
+function DisplayHeatmap({ map }) {
+
+  const showHeatmap = () => {
+
+    switch (document.getElementById('cb4').checked) {
+      case true:
+        console.log('true');  
+        /*L.heatLayer(
+          [[50.5, 30.5, 0.2],[50.6, 30.4, 0.5]], {radius: 25}
+        ).addTo(map);*/       
+        break;
+      case false:
+        console.log('false');
+        break;
+      default:
+        break;
+    }
+  };
+  
+  return (
+    <div className='btnHeatmap'>
+      <label className='switch'>
+        <input type='checkbox' id='cb4' onClick={showHeatmap}/>
+        <span className='slider round'/>
+      </label>
+      <p>Heatmap</p>
+    </div>
+  )
+}
+
+
 //from https://react-leaflet.js.org/docs/example-external-state/
 //center map
 /*function MapCenter({ map }) {
@@ -270,44 +299,13 @@ function MapClear({ map }) {
     document.getElementById('cb1').checked = false;
     document.getElementById('cb2').checked = false;
     document.getElementById('cb3').checked = false;
+    document.getElementById('cb4').checked = false;
     map.setView(mapCenter, mapZoom);
   };
   
   return (
     <div className='btnClear'>
       <button id='clearButton' onClick={clearMap}>clear map</button>
-    </div>
-  )
-}
-
-//with heatmap.js plugin
-function Heatmap({ map }) {
-
-  const showHeatmap = () => {
-  var el = document.getElementById('cb4');
-  
-    switch (el.checked) {
-      case true:
-        console.log('Button gedrückt!');
-        /*L.heatLayer(
-          [[50.5, 30.5, 0.2],[50.6, 30.4, 0.5]], {radius: 25}
-        ).addTo(map);*/
-        break;
-      case false:
-        console.log('false');
-        break;
-      default:
-        break;
-    }
-  }
-
-  return (
-    <div className='btnHeatmap'>
-      <label className='switch'>
-        <input type='checkbox' id='cb4' onClick={showHeatmap}/>
-        <span className='slider round'/>
-      </label>
-      <p>Heatmap</p>
     </div>
   )
 }
@@ -360,7 +358,6 @@ function Map() {
               url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
             />
             <DisplayGeolocation/>
-            <Heatmap/>
           </MapContainer>
         </div>
         <Legend/>
@@ -376,7 +373,7 @@ function Map() {
           {map ? <DisplayDzs map={map} /> : null}   
         </div>
         <div> 
-          {map ? <Heatmap map={map} /> : null}  
+          {map ? <DisplayHeatmap map={map} /> : null}  
         </div>
       </div>        
     </main>

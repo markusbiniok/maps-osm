@@ -1,4 +1,4 @@
-#clearButton, #heatmapButton {
+#clearButton {
   padding: 4px 11px;
   border: unset;
   border-radius: 15px;
@@ -14,7 +14,7 @@
   cursor: pointer;
 }
 
-#clearButton::before, #heatmapButton::before {
+#clearButton::before {
   content: "";
   position: absolute;
   top: 0;
@@ -27,11 +27,11 @@
   transition: all 400ms;
 }
 
-#clearButton:hover, #heatmapButton:hover {
+#clearButton:hover {
   color: white;
 }
  
-#clearButton:hover::before, #heatmapButton:hover::before {
+#clearButton:hover::before {
   width: 100%;
 }
 
