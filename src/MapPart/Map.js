@@ -14,6 +14,39 @@ import locationIcon from './images/icon_location.png';
 const mapCenter = [51.336, 12.3730747];
 const mapZoom = 14;
 
+
+function MapClear({ map }) {
+
+  const clearMap = () => {
+    map.eachLayer(function (layer) {
+      if (layer instanceof L.Marker) {
+        layer.remove()
+      }
+    });
+    map.eachLayer(function (layer) {
+      if (layer instanceof L.Polyline) {
+        layer.remove()
+      }
+    });
+    map.eachLayer(function (layer) {
+      if (layer instanceof L.CircleMarker) {
+        layer.remove()
+      }
+    });
+    document.getElementById('cb1').checked = false;
+    document.getElementById('cb2').checked = false;
+    document.getElementById('cb3').checked = false;
+    document.getElementById('cb4').checked = false;
+    map.setView(mapCenter, mapZoom);
+  };
+  
+  return (
+    <div className='btnClear'>
+      <button id='clearButton' onClick={clearMap}>clear map</button>
+    </div>
+  )
+}
+
 //show demo-cycle-traffic
 function DisplayDemoCycleTraffic({ map }) //external state
 {
@@ -262,7 +295,6 @@ function DisplayHeatmap({ map }) {
   )
 }
 
-
 //from https://react-leaflet.js.org/docs/example-external-state/
 //center map
 /*function MapCenter({ map }) {
@@ -277,38 +309,6 @@ function DisplayHeatmap({ map }) {
     </div>
   )
 }*/
-
-function MapClear({ map }) {
-
-  const clearMap = () => {
-    map.eachLayer(function (layer) {
-      if (layer instanceof L.Marker) {
-        layer.remove()
-      }
-    });
-    map.eachLayer(function (layer) {
-      if (layer instanceof L.Polyline) {
-        layer.remove()
-      }
-    });
-    map.eachLayer(function (layer) {
-      if (layer instanceof L.CircleMarker) {
-        layer.remove()
-      }
-    });
-    document.getElementById('cb1').checked = false;
-    document.getElementById('cb2').checked = false;
-    document.getElementById('cb3').checked = false;
-    document.getElementById('cb4').checked = false;
-    map.setView(mapCenter, mapZoom);
-  };
-  
-  return (
-    <div className='btnClear'>
-      <button id='clearButton' onClick={clearMap}>clear map</button>
-    </div>
-  )
-}
 
 
 function Map() {
