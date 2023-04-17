@@ -49,11 +49,10 @@ function DisplayDemoCycleTraffic({ map }) //external state
   };
 
   return (
-  
     <div className='btnDemoCycleTraffic'>
-      <label className="switch">
-        <input type="checkbox" id="cb1" onClick={demoCycleTraffic}/>
-        <span className="slider round"/>
+      <label className='switch'>
+        <input type='checkbox' id='cb1' onClick={demoCycleTraffic}/>
+        <span className='slider round'/>
       </label>
       <p>Demo Radverkehr</p>
     </div>
@@ -86,11 +85,10 @@ function DisplayCycleTraffic({ map }) {
   };
 
   return (
-  
     <div className='btnCycleTraffic'>
-      <label className="switch">
-        <input type="checkbox" id="cb2" onClick={cycleTraffic}/>
-        <span className="slider round"/>
+      <label className='switch'>
+        <input type='checkbox' id='cb2' onClick={cycleTraffic}/>
+        <span className='slider round'/>
       </label>
       <p>Radverkehr</p>
     </div>
@@ -119,7 +117,7 @@ function DisplayDzs({ map }) {
         //method to show marker of all dzs
         //icon from https://www.flaticon.com/search?word=counter
         const markerDzs = new L.Icon({
-          iconUrl: require('./images/icon_dzs.png'),
+          iconUrl: require("./images/icon_dzs.png"),
           iconSize: [35, 35]
         });
         var marker1 = L.marker(dzs1, {icon: markerDzs}).addTo(map);
@@ -226,11 +224,10 @@ function DisplayDzs({ map }) {
   };
 
   return (
-  
     <div className='btnDzs'>
-      <label className="switch">
-        <input type="checkbox" id="cb3" onClick={dzs}/>
-        <span className="slider round"/>
+      <label className='switch'>
+        <input type='checkbox' id='cb3' onClick={dzs}/>
+        <span className='slider round'/>
       </label>
       <p>Dauerzählstellen</p>
     </div>
@@ -287,17 +284,30 @@ function MapClear({ map }) {
 function Heatmap({ map }) {
 
   const showHeatmap = () => {
-    console.log('Button gedrückt!');
-    L.heatLayer(
-      [[50.5, 30.5, 0.2],
-      [50.6, 30.4, 0.5]], 
-      {radius: 25}
-    ).addTo(map);
+  var el = document.getElementById('cb4');
+  
+    switch (el.checked) {
+      case true:
+        console.log('Button gedrückt!');
+        /*L.heatLayer(
+          [[50.5, 30.5, 0.2],[50.6, 30.4, 0.5]], {radius: 25}
+        ).addTo(map);*/
+        break;
+      case false:
+        console.log('false');
+        break;
+      default:
+        break;
+    }
   }
 
   return (
     <div className='btnHeatmap'>
-      <button type="button" id='heatmapButton' className="btnHeatmap" onClick={showHeatmap}>Heatmap</button> 
+      <label className='switch'>
+        <input type='checkbox' id='cb4' onClick={showHeatmap}/>
+        <span className='slider round'/>
+      </label>
+      <p>Heatmap</p>
     </div>
   )
 }
@@ -322,7 +332,7 @@ function Map() {
   }
 
   const showGeolocation = () => {
-    map.locate().on("locationfound", function (e) {
+    map.locate().on('locationfound', function (e) {
       setPosition(e.latlng);
       map.flyTo(e.latlng, map.getZoom()+2);
     });
@@ -334,14 +344,11 @@ function Map() {
       <div className='header'>
         <div className='caption'>Radverkehrsdaten und Radwegnutzung</div>
         <div className='headerButtons'>
-        <div> 
-            {map ? <Heatmap map={map} /> : null}  
-          </div>
           <div> 
             {map ? <MapClear map={map} /> : null}  
           </div>
-          <div>
-            <button type="button" id='loactionButton' className="btnLocation" onClick={showGeolocation}><img src={locationIcon} width="30" height="30" alt ="location icon"/></button> 
+          <div className='btnLocation'>
+            <button type="button" id='loactionButton' onClick={showGeolocation}><img src={locationIcon} width="30" height="30" alt ="location icon"/></button> 
           </div>
         </div>
       </div>
@@ -350,7 +357,7 @@ function Map() {
           <MapContainer ref={setMap} center={mapCenter} zoom={mapZoom} scrollWheelZoom={true} zoomControl={true}>
           <TileLayer id='map'
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url='https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png'
+              url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
             />
             <DisplayGeolocation/>
             <Heatmap/>
@@ -367,6 +374,9 @@ function Map() {
         </div>
         <div>
           {map ? <DisplayDzs map={map} /> : null}   
+        </div>
+        <div> 
+          {map ? <Heatmap map={map} /> : null}  
         </div>
       </div>        
     </main>
