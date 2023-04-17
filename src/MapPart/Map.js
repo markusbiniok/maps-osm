@@ -1,5 +1,6 @@
 import './Map.css';
 import './ButtonDesign.css';
+import 'leaflet.heat';
 import Legend from './Legend.js';
 import React, {  useState } from 'react';
 import L from 'leaflet';
@@ -287,6 +288,11 @@ function Heatmap({ map }) {
 
   const showHeatmap = () => {
     console.log('Button gedrückt!');
+    L.heatLayer(
+      [[50.5, 30.5, 0.2],
+      [50.6, 30.4, 0.5]], 
+      {radius: 25}
+    ).addTo(map);
   }
 
   return (
@@ -347,6 +353,7 @@ function Map() {
               url='https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png'
             />
             <DisplayGeolocation/>
+            <Heatmap/>
           </MapContainer>
         </div>
         <Legend/>
@@ -360,9 +367,6 @@ function Map() {
         </div>
         <div>
           {map ? <DisplayDzs map={map} /> : null}   
-        </div>
-        <div className='btnHeatmap'>
-          <button id='heatmapButton'>Heatmap</button>
         </div>
       </div>        
     </main>
