@@ -5,7 +5,7 @@ import Legend from './Legend.js';
 import React, {  useState } from 'react';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Popup, Marker} from 'react-leaflet';
-import testData from './data/testData.json';
+//import testData from './data/testData.json';
 import cycleData from './data/Radmengen_21-22.json';
 //import centerIcon from '.images/icon_center.png';
 import locationIcon from './images/icon_location.png';
@@ -48,7 +48,7 @@ function MapClear({ map }) {
 }
 
 //show demo-cycle-traffic
-function DisplayDemoCycleTraffic({ map }) //external state
+/*function DisplayDemoCycleTraffic({ map }) //external state
 {
   const demoCycleTraffic = () => {
 
@@ -90,7 +90,7 @@ function DisplayDemoCycleTraffic({ map }) //external state
       <p>Demo Radverkehr</p>
     </div>
   )
-}
+}*/
 
 //show cycle-traffic
 //manual counting on certain sections of the road network in the city of Leipzig
@@ -361,9 +361,6 @@ function Map() {
       </div>
       <div className='dataButtons'> 
         <div>
-          {map ? <DisplayDemoCycleTraffic map={map} /> : null}   
-        </div> 
-        <div>
           {map ? <DisplayCycleTraffic map={map} /> : null}   
         </div>
         <div>
@@ -378,3 +375,8 @@ function Map() {
 }
 
 export default Map;
+
+/*
+<div>
+  {map ? <DisplayDemoCycleTraffic map={map} /> : null}   
+</div>  */
