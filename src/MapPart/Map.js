@@ -272,6 +272,13 @@ function DisplayHeatmap({ map }) {
     switch (document.getElementById('cb4').checked) {
       case true:
         console.log('show leaflet heatmap');
+        var options = {
+          maxZoom: 14,
+          radius: 25,
+          blur: 10
+        }
+
+        L.heatLayer(([52, 12, 0.8], [52, 12.5, 0.5]), options).addTo(map);
         break;
       case false:
         console.log('remove leaflet heatmap');
