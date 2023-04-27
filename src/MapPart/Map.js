@@ -272,15 +272,6 @@ function DisplayHeatmap({ map }) {
     switch (document.getElementById('cb4').checked) {
       case true:
         console.log('true');
-        L.heatLayer(heatmapData).addTo(map);
-        var heatmapData = [
-          [52.2, 12.5],
-          [52.5, 12.45]
-        ]
-        var heat = L.heatLayer([
-          [52, 12.6, 0.6], // lat, lng, intensity
-          [52, 12.5 , 0.8]
-        ], {radius: 25}).addTo(map); 
         break;
       case false:
         console.log('false');
