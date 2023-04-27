@@ -271,10 +271,10 @@ function DisplayHeatmap({ map }) {
 
     switch (document.getElementById('cb4').checked) {
       case true:
-        console.log('true');
+        console.log('show leaflet heatmap');
         break;
       case false:
-        console.log('false');
+        console.log('remove leaflet heatmap');
         break;
       default:
         break;
