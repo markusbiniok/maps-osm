@@ -5,10 +5,10 @@ import Legend from './Legend.js';
 import React, {  useState } from 'react';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Popup, Marker} from 'react-leaflet';
-//import testData from './data/testData.json';
 import cycleData from './data/Radmengen_21-22.json';
-//import centerIcon from '.images/icon_center.png';
 import locationIcon from './images/icon_location.png';
+//import testData from './data/testData.json';
+//import centerIcon from '.images/icon_center.png';
 
 
 const mapCenter = [51.336, 12.3730747];
