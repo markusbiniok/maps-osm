@@ -65,7 +65,6 @@ const mapZoom = 14;
 function DisplayCycleTraffic({ map }) {
   
   const showCycleTraffic = () => {
-
     var cycleDataStyle = {
       color: 'red'
     }
