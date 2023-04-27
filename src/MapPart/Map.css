@@ -28,12 +28,6 @@
   align-items: center;
 }
 
-.btnClear {
-  margin-right: 70px;
-  padding-top: 7px;
-  padding-bottom: 3px;
-}
-
 .main {
   display: flex;
   justify-content: flex-start;
@@ -49,21 +43,9 @@
 }
 
 .dataButtons {
+  margin-top: 10px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: var(--mpWidth);
-}
-
-.btnDemoCycleTraffic, .btnCycleTraffic, .btnDzs, .btnHeatmap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Roboto';
-  font-weight: 800;
-  font-size: 1rem;
-}
-
-.btnDemoCycleTraffic > p, .btnCycleTraffic > p, .btnDzs > p, .btnHeatmap > p {
-  margin-left: 7px;
 }

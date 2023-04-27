@@ -15,38 +15,6 @@ const mapCenter = [51.336, 12.3730747];
 const mapZoom = 14;
 
 
-function MapClear({ map }) {
-
-  const clearMap = () => {
-    map.eachLayer(function (layer) {
-      if (layer instanceof L.Marker) {
-        layer.remove()
-      }
-    });
-    map.eachLayer(function (layer) {
-      if (layer instanceof L.Polyline) {
-        layer.remove()
-      }
-    });
-    map.eachLayer(function (layer) {
-      if (layer instanceof L.CircleMarker) {
-        layer.remove()
-      }
-    });
-    document.getElementById('cb1').checked = false;
-    document.getElementById('cb2').checked = false;
-    document.getElementById('cb3').checked = false;
-    document.getElementById('cb4').checked = false;
-    map.setView(mapCenter, mapZoom);
-  };
-  
-  return (
-    <div className='btnClear'>
-      <button id='clearButton' onClick={clearMap}>clear map</button>
-    </div>
-  )
-}
-
 //show demo-cycle-traffic
 /*function DisplayDemoCycleTraffic({ map }) //external state
 {
@@ -96,16 +64,14 @@ function MapClear({ map }) {
 //manual counting on certain sections of the road network in the city of Leipzig
 function DisplayCycleTraffic({ map }) {
   
-  const cycleTraffic = () => {
-    
-    switch (document.getElementById('cb2').checked) {
-      case true:
-        var cycleDataStyle = {
-          color: 'red'
-        }
-        L.geoJSON(cycleData, cycleDataStyle).addTo(map);
-        break;
-      case false:
+  const showCycleTraffic = () => {
+
+    var cycleDataStyle = {
+      color: 'red'
+    }
+    L.geoJSON(cycleData, cycleDataStyle).addTo(map);
+
+      /*case false:
         map.eachLayer(function (layer) {
           if (layer instanceof L.Polyline) {
             layer.remove()
@@ -114,16 +80,12 @@ function DisplayCycleTraffic({ map }) {
         break;
       default:
         break;
-    }
+    }*/
   };
 
   return (
     <div className='btnCycleTraffic'>
-      <label className='switch'>
-        <input type='checkbox' id='cb2' onClick={cycleTraffic}/>
-        <span className='slider round'/>
-      </label>
-      <p>Radverkehr</p>
+      <button id='cycleTraffic' onClick={showCycleTraffic}>Radverkehr</button>
     </div>
   )
 }
@@ -143,124 +105,105 @@ function DisplayDzs({ map }) {
     const dzs10 = [51.320706, 12.386071]; //Semmelweisstraße
     const dzs11 = [51.340034, 12.408337]; //Wurzner Straße
 
-    switch (document.getElementById('cb3').checked) {
-      case true:
-        //method to show marker of all dzs
-        //icon from https://www.flaticon.com/search?word=counter
-        const markerDzs = new L.Icon({
-          iconUrl: require("./images/icon_dzs.png"),
-          iconSize: [35, 35]
-        });
-        var marker1 = L.marker(dzs1, {icon: markerDzs}).addTo(map);
-        var marker2 = L.marker(dzs2, {icon: markerDzs}).addTo(map);
-        var marker3 = L.marker(dzs3, {icon: markerDzs}).addTo(map);
-        var marker4 = L.marker(dzs4, {icon: markerDzs}).addTo(map);
-        var marker5 = L.marker(dzs5, {icon: markerDzs}).addTo(map);
-        var marker6 = L.marker(dzs6, {icon: markerDzs}).addTo(map);
-        var marker7 = L.marker(dzs7, {icon: markerDzs}).addTo(map);
-        var marker8 = L.marker(dzs8, {icon: markerDzs}).addTo(map);
-        var marker9 = L.marker(dzs9, {icon: markerDzs}).addTo(map);
-        var marker10 = L.marker(dzs10, {icon: markerDzs}).addTo(map);
-        var marker11 = L.marker(dzs11, {icon: markerDzs}).addTo(map);
-        
-        marker1.bindPopup("Georg-Schumann-Straße");
-        marker1.on('mouseover', function (e) {
-          this.openPopup();
-        });
-        marker1.on('mouseout', function (e) {
-            this.closePopup();
-        });
-        marker2.bindPopup("Gerberstraße");
-        marker2.on('mouseover', function (e) {
-          this.openPopup();
-        });
-        marker2.on('mouseout', function (e) {
-            this.closePopup();
-        });
-        marker3.bindPopup("Grimmaischer Steinweg");
-        marker3.on('mouseover', function (e) {
-          this.openPopup();
-        });
-        marker3.on('mouseout', function (e) {
-            this.closePopup();
-        });
-        marker4.bindPopup("Jahnallee");
-        marker4.on('mouseover', function (e) {
-          this.openPopup();
-        });
-        marker4.on('mouseout', function (e) {
-            this.closePopup();
-        });
-        marker5.bindPopup("Karl-Liebknecht-Straße");
-        marker5.on('mouseover', function (e) {
-          this.openPopup();
-        });
-        marker5.on('mouseout', function (e) {
-            this.closePopup();
-        });
-        marker6.bindPopup("Lene-Voigt-Park");
-        marker6.on('mouseover', function (e) {
-          this.openPopup();
-        });
-        marker6.on('mouseout', function (e) {
-            this.closePopup();
-        });
-        marker7.bindPopup("Lützner Straße");
-        marker7.on('mouseover', function (e) {
-          this.openPopup();
-        });
-        marker7.on('mouseout', function (e) {
-            this.closePopup();
-        });
-        marker8.bindPopup("Manetstraße");
-        marker8.on('mouseover', function (e) {
-          this.openPopup();
-        });
-        marker8.on('mouseout', function (e) {
-            this.closePopup();
-        });
-        marker9.bindPopup("Sachsenbrücke");
-        marker9.on('mouseover', function (e) {
-          this.openPopup();
-        });
-        marker9.on('mouseout', function (e) {
-            this.closePopup();
-        });
-        marker10.bindPopup("Semmelweisstraße");
-        marker10.on('mouseover', function (e) {
-          this.openPopup();
-        });
-        marker10.on('mouseout', function (e) {
-            this.closePopup();
-        });
-        marker11.bindPopup("Wurzner Straße");
-        marker11.on('mouseover', function (e) {
-          this.openPopup();
-        });
-        marker11.on('mouseout', function (e) {
-            this.closePopup();
-        });
-        break;
-      case false:
-        //method to remove all marker of all dzs
-        map.eachLayer(function (layer) {
-          if (layer instanceof L.Marker) {
-            layer.remove()
-          }
-        });
-        break;
-      default:
-        break;
-    }
+    const markerDzs = new L.Icon({
+      iconUrl: require("./images/icon_dzs.png"),
+      iconSize: [35, 35]
+    });
+
+    var marker1 = L.marker(dzs1, {icon: markerDzs}).addTo(map);
+    var marker2 = L.marker(dzs2, {icon: markerDzs}).addTo(map);
+    var marker3 = L.marker(dzs3, {icon: markerDzs}).addTo(map);
+    var marker4 = L.marker(dzs4, {icon: markerDzs}).addTo(map);
+    var marker5 = L.marker(dzs5, {icon: markerDzs}).addTo(map);
+    var marker6 = L.marker(dzs6, {icon: markerDzs}).addTo(map);
+    var marker7 = L.marker(dzs7, {icon: markerDzs}).addTo(map);
+    var marker8 = L.marker(dzs8, {icon: markerDzs}).addTo(map);
+    var marker9 = L.marker(dzs9, {icon: markerDzs}).addTo(map);
+    var marker10 = L.marker(dzs10, {icon: markerDzs}).addTo(map);
+    var marker11 = L.marker(dzs11, {icon: markerDzs}).addTo(map);
+    
+    marker1.bindPopup("Georg-Schumann-Straße");
+    marker1.on('mouseover', function (e) {
+      this.openPopup();
+    });
+    marker1.on('mouseout', function (e) {
+        this.closePopup();
+    });
+    marker2.bindPopup("Gerberstraße");
+    marker2.on('mouseover', function (e) {
+      this.openPopup();
+    });
+    marker2.on('mouseout', function (e) {
+        this.closePopup();
+    });
+    marker3.bindPopup("Grimmaischer Steinweg");
+    marker3.on('mouseover', function (e) {
+      this.openPopup();
+    });
+    marker3.on('mouseout', function (e) {
+        this.closePopup();
+    });
+    marker4.bindPopup("Jahnallee");
+    marker4.on('mouseover', function (e) {
+      this.openPopup();
+    });
+    marker4.on('mouseout', function (e) {
+        this.closePopup();
+    });
+    marker5.bindPopup("Karl-Liebknecht-Straße");
+    marker5.on('mouseover', function (e) {
+      this.openPopup();
+    });
+    marker5.on('mouseout', function (e) {
+        this.closePopup();
+    });
+    marker6.bindPopup("Lene-Voigt-Park");
+    marker6.on('mouseover', function (e) {
+      this.openPopup();
+    });
+    marker6.on('mouseout', function (e) {
+        this.closePopup();
+    });
+    marker7.bindPopup("Lützner Straße");
+    marker7.on('mouseover', function (e) {
+      this.openPopup();
+    });
+    marker7.on('mouseout', function (e) {
+        this.closePopup();
+    });
+    marker8.bindPopup("Manetstraße");
+    marker8.on('mouseover', function (e) {
+      this.openPopup();
+    });
+    marker8.on('mouseout', function (e) {
+        this.closePopup();
+    });
+    marker9.bindPopup("Sachsenbrücke");
+    marker9.on('mouseover', function (e) {
+      this.openPopup();
+    });
+    marker9.on('mouseout', function (e) {
+        this.closePopup();
+    });
+    marker10.bindPopup("Semmelweisstraße");
+    marker10.on('mouseover', function (e) {
+      this.openPopup();
+    });
+    marker10.on('mouseout', function (e) {
+        this.closePopup();
+    });
+    marker11.bindPopup("Wurzner Straße");
+    marker11.on('mouseover', function (e) {
+      this.openPopup();
+    });
+    marker11.on('mouseout', function (e) {
+        this.closePopup();
+    });
   };
 
   return (
     <div className='btnDzs'>
-      <label className='switch'>
-        <input type='checkbox' id='cb3' onClick={dzs}/>
-        <span className='slider round'/>
-      </label>
-      <p>Dauerzählstellen</p>
+      <button id='dzs' onClick={dzs}>Dauerzählstellen</button>
     </div>
   )
 }
@@ -268,33 +211,47 @@ function DisplayDzs({ map }) {
 function DisplayHeatmap({ map }) {
 
   const showHeatmap = () => {
-
-    switch (document.getElementById('cb4').checked) {
-      case true:
-        console.log('show leaflet heatmap');
-        var options = {
-          maxZoom: 14,
-          radius: 25,
-          blur: 10
-        }
-
-        L.heatLayer(([52, 12, 0.8], [52, 12.5, 0.5]), options).addTo(map);
-        break;
-      case false:
-        console.log('remove leaflet heatmap');
-        break;
-      default:
-        break;
+    window.alert('Heatmap anzeigen');
+    var options = {
+      maxZoom: 14,
+      radius: 25,
+      blur: 10
     }
-  };
+
+    L.heatLayer(([52, 12, 0.8], [52, 12.5, 0.5]), options).addTo(map);
+  }
   
   return (
     <div className='btnHeatmap'>
-      <label className='switch'>
-        <input type='checkbox' id='cb4' onClick={showHeatmap}/>
-        <span className='slider round'/>
-      </label>
-      <p>Heatmap</p>
+      <button id='heatmap' onClick={showHeatmap}>Heatmap</button>
+    </div>
+  )
+}
+
+function MapClear({ map }) {
+
+  const clearMap = () => {
+    map.eachLayer(function (layer) {
+      if (layer instanceof L.Marker) {
+        layer.remove()
+      }
+    });
+    map.eachLayer(function (layer) {
+      if (layer instanceof L.Polyline) {
+        layer.remove()
+      }
+    });
+    map.eachLayer(function (layer) {
+      if (layer instanceof L.CircleMarker) {
+        layer.remove()
+      }
+    });
+    map.setView(mapCenter, mapZoom);
+  };
+  
+  return (
+    <div className='btnClear'>
+      <button id='clearAll' onClick={clearMap}>clear map</button>
     </div>
   )
 }
@@ -346,9 +303,6 @@ function Map() {
       <div className='header'>
         <div className='caption'>Radverkehrsdaten und Radwegnutzung</div>
         <div className='headerButtons'>
-          <div> 
-            {map ? <MapClear map={map} /> : null}  
-          </div>
           <div className='btnLocation'>
             <button type="button" id='loactionButton' onClick={showGeolocation}><img src={locationIcon} width="30" height="30" alt ="location icon"/></button> 
           </div>
@@ -375,6 +329,9 @@ function Map() {
         </div>
         <div> 
           {map ? <DisplayHeatmap map={map} /> : null}  
+        </div>
+        <div> 
+          {map ? <MapClear map={map} /> : null}  
         </div>
       </div>        
     </main>
