@@ -210,14 +210,23 @@ function DisplayDzs({ map }) {
 function DisplayHeatmap({ map }) {
 
   const showHeatmap = () => {
-    window.alert('Heatmap anzeigen');
-    /*var heat = (
-      [52.352, 4.9392, 14],
-      {radius: 25},
-      {0.4: 'blue', 0.65: 'lime', 1: 'red'},
-      {minOpacity: 0.4}
-      );
-    L.heatLayer(heat).addTo(map);*/
+    //window.alert('Heatmap anzeigen');
+    
+    var testData = {
+      max: 8,
+      data: [[24.64, 46.77, 3], [50.3, 45.3, 1], [55.1, 43.6, 8]]
+    };
+  
+    var cfg = {
+      "radius": 2,
+      "maxOpacity": .8, 
+      "scaleRadius": true, 
+      "useLocalExtrema": true
+    };
+
+    var heatmapLayer = new HeatmapOverlay(cfg);
+
+
   }
   
   return (
@@ -296,7 +305,6 @@ function Map() {
     });
   }
 
-
   return (
     <main id='app'>
       <div className='header'>
@@ -313,8 +321,8 @@ function Map() {
           <TileLayer id='map'
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
-            />
-            <DisplayGeolocation/>
+          />
+          <DisplayGeolocation/>
           </MapContainer>
         </div>
         <Legend/>
