@@ -211,13 +211,13 @@ function DisplayHeatmap({ map }) {
 
   const showHeatmap = () => {
     window.alert('Heatmap anzeigen');
-    var options = {
-      maxZoom: 14,
-      radius: 25,
-      blur: 10
-    }
-
-    L.heatLayer(([52, 12, 0.8], [52, 12.5, 0.5]), options).addTo(map);
+    /*var heat = (
+      [52.352, 4.9392, 14],
+      {radius: 25},
+      {0.4: 'blue', 0.65: 'lime', 1: 'red'},
+      {minOpacity: 0.4}
+      );
+    L.heatLayer(heat).addTo(map);*/
   }
   
   return (
