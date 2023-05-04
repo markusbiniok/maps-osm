@@ -210,7 +210,7 @@ function DisplayDzs({ map }) {
 function DisplayHeatmap({ map }) {
 
   const showHeatmap = () => {
-    window.alert('Heatmap anzeigen');
+    //window.alert('Heatmap anzeigen');
   }
   
   return (
