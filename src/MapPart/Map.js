@@ -211,18 +211,6 @@ function DisplayHeatmap({ map }) {
 
   const showHeatmap = () => {
     window.alert('Heatmap anzeigen');
-    
-    var testData = {
-      max: 8,
-      data: [[24.64, 46.77, 3], [50.3, 45.3, 1], [55.1, 43.6, 8]]
-    };
-  
-    var cfg = {
-      "radius": 2,
-      "maxOpacity": .8, 
-      "scaleRadius": true, 
-      "useLocalExtrema": true
-    };
   }
   
   return (
