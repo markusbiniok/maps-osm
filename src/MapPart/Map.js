@@ -4,7 +4,7 @@ import 'leaflet.heat';
 import Legend from './Legend.js';
 import React, { useState } from 'react';
 import L from 'leaflet';
-import { MapContainer, TileLayer, Popup, Marker} from 'react-leaflet';
+import { MapContainer, TileLayer, Popup, Marker } from 'react-leaflet';
 import cycleData from './data/Radmengen_21-22.json';
 import locationIcon from './images/icon_location.png';
 //import testData from './data/testData.json';
@@ -65,9 +65,11 @@ const mapZoom = 14;
 function DisplayCycleTraffic({ map }) {
   
   const showCycleTraffic = () => {
+    
     var cycleDataStyle = {
       color: 'red'
     }
+
     L.geoJSON(cycleData, cycleDataStyle).addTo(map);
 
       /*case false:
@@ -210,7 +212,7 @@ function DisplayDzs({ map }) {
 function DisplayHeatmap({ map }) {
 
   const showHeatmap = () => {
-    //window.alert('Heatmap anzeigen');
+    console.log('Heatmap anzeigen');
   }
   
   return (
@@ -289,6 +291,7 @@ function Map() {
     });
   }
 
+
   return (
     <main id='app'>
       <div className='header'>
@@ -332,6 +335,6 @@ function Map() {
 export default Map;
 
 /*
-<div>
-  {map ? <DisplayDemoCycleTraffic map={map} /> : null}   
-</div>  */
+<div className='btnHeatmap'>
+            <button type="button" id='heatmapButton' onClick={showHeatmap}>Heatmap</button> 
+          </div> */
