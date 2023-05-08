@@ -213,6 +213,22 @@ function DisplayHeatmap({ map }) {
 
   const showHeatmap = () => {
     console.log('Heatmap anzeigen');
+    var data = [
+      {
+        lat:51.336,
+        lon:12.3730747,
+        value:100
+      },
+      {
+        lat:51.4,
+        lon:12.4,
+        value:1
+      }
+    ];
+
+    var heatmap = new L.DivHeatmapLayer();
+    heatmap.setData(data);
+    heatmap.addTo(map);
   }
   
   return (
