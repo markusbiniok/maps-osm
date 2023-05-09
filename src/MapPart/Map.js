@@ -212,24 +212,25 @@ function DisplayDzs({ map }) {
 function DisplayHeatmap({ map }) {
 
   const showHeatmap = () => {
-    console.log('Heatmap anzeigen');
-    var data = [
-      {
-        lat:51.336,
-        lon:12.3730747,
-        value:100
-      },
-      {
-        lat:51.4,
-        lon:12.4,
-        value:1
-      }
-    ];
-
-    var heatmap = new L.DivHeatmapLayer();
-    heatmap.setData(data);
-    heatmap.addTo(map);
-  }
+    window.alert('Heatmap anzeigen');
+    /*var testData = {
+      max: 8,
+      data: [{lat: 51.336, lng: 12.3730747, count: 1}, {lat: 51.8, lng: 12.5, count: 2}]
+    };
+  
+    var cfg = {
+      "radius": 0.0008,
+      "maxOpacity": 1,
+      "scaleRadius": true,
+      "useLocalExtrema": true,
+      latField: 'lat',
+      lngField: 'lng',
+      valueField: 'count'
+    };
+  
+    L.Heatmap(testData, cfg).addTo(map);*/
+  
+}
   
   return (
     <div className='btnHeatmap'>
@@ -306,8 +307,8 @@ function Map() {
       map.flyTo(e.latlng, map.getZoom()+2);
     });
   }
-
-
+  
+  
   return (
     <main id='app'>
       <div className='header'>
