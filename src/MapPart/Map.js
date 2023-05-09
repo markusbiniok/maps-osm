@@ -4,7 +4,7 @@ import 'leaflet.heat';
 import Legend from './Legend.js';
 import React, { useState } from 'react';
 import L from 'leaflet';
-import { MapContainer, TileLayer, Popup, Marker, Polyline } from 'react-leaflet';
+import { MapContainer, TileLayer, Popup, Marker } from 'react-leaflet';
 import cycleData from './data/Radmengen_21-22.json';
 import locationIcon from './images/icon_location.png';
 //import testData from './data/testData.json';
@@ -206,13 +206,13 @@ function DisplayHeatmap({ map }) {
     L.geoJSON(cycleData, {
       style: function(feature) {
           switch (feature.properties.Qu_Su_Rad) {
-              case Qu_Su_Rad > 1000: 
+              case 'Qu_Su_Rad' > 2000: 
                 return {
-                  color: "#ff0000"
+                  color: "#b50000"
                 };
-              case Qu_Su_Rad < 1000: 
+              case 'Qu_Su_Rad' < 2000: 
                 return {
-                  color: "#0000ff"
+                  color: "#9400b5"
                 };
           }
       }
@@ -311,18 +311,7 @@ function Map() {
       setPosition(e.latlng);
       map.flyTo(e.latlng, map.getZoom()+2);
     });
-  }
-
-
-  const polylineData = [
-    [52.505, 11.09],
-    [53.51, 10.1], 
-  ]
-
-  const polylineStyle = { 
-    color: 'brown'
-  }
-  
+  }  
   
   return (
     <main id='app'>
@@ -342,7 +331,6 @@ function Map() {
               url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"
           />
           <DisplayGeolocation/>
-          <Polyline positions={polylineData} pathOptions={polylineStyle}/>
           </MapContainer>
         </div>
         <Legend/>
