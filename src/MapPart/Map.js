@@ -65,7 +65,6 @@ const mapZoom = 14;
 function DisplayCycleTraffic({ map }) {
   
   const showCycleTraffic = () => {
-    
     var cycleDataStyle = {
       color: 'red'
     }
@@ -338,7 +337,21 @@ function Map() {
   const showHeatmap = () => {
     console.log('Step 1');
 
-    var testData = {
+    L.geoJSON(cycleData, {
+      style: function() {
+          return {
+            color: 'purple'
+          }
+      }
+    }).bindPopup(function (feature) {
+      return feature.properties.Qu_Su_Rad; //er findet evtl Qu_Su_Rad nicht
+    }).addTo(map); 
+
+    /*marker7.on('mouseover', function (e) {
+      this.openPopup();
+    });*/
+
+    /*var testData = {
       max: 8,
       data: [{lat: 51.336, lng: 12.3730747, count: 1}, {lat: 51.8, lng: 12.5, count: 2}]
     };
@@ -353,7 +366,7 @@ function Map() {
       valueField: 'count'
     };
     
-    
+
     console.log('Step 2');
 
     var heatmap = new HeatmapOverlay(cfg);
@@ -361,7 +374,7 @@ function Map() {
 
     console.log('Step 3');
 
-    /*const styleData = {
+    const styleData = {
       color: '#9400b5' 
     }
 
@@ -380,22 +393,7 @@ function Map() {
       }
     }
 
-    L.geoJSON(cycleData, styleData).addTo(map);
-
-    L.geoJSON(cycleData, {
-      style: function(feature) {
-          switch (feature.properties.Qu_Su_Rad) {
-              case 'Qu_Su_Rad' > 2000: 
-                return {
-                  color: "#b50000"
-                };
-              case 'Qu_Su_Rad' < 2000: 
-                return {
-                  color: "#9400b5"
-                };
-          }
-      }
-    }).addTo(map);  
+    L.geoJSON(cycleData, styleData).addTo(map); 
   }*/
 }
 
