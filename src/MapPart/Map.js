@@ -1,12 +1,12 @@
 import './Map.css';
 import './ButtonDesign.css';
-import 'leaflet.heat';
 import Legend from './Legend.js';
 import React, { useState } from 'react';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Popup, Marker } from 'react-leaflet';
 import cycleData from './data/Radmengen_21-22.json';
 import locationIcon from './images/icon_location.png';
+import HeatmapOverlay from 'leaflet-heatmap/leaflet-heatmap.js';
 //import testData from './data/testData.json';
 //import centerIcon from '.images/icon_center.png';
 
@@ -198,10 +198,49 @@ function DisplayDzs({ map }) {
   )
 }
 
-function DisplayHeatmap({ map }) {
+/*function DisplayHeatmap({ map }) {
 
   const showHeatmap = () => {
     console.log('change color');
+
+    var testData = {
+      max: 8,
+      data: [{lat: 51.336, lng: 12.3730747, count: 1}, {lat: 51.8, lng: 12.5, count: 2}]
+    };
+  
+    var cfg = {
+      "radius": 0.0008,
+      "maxOpacity": 1,
+      "scaleRadius": true,
+      "useLocalExtrema": true,
+      latField: 'lat',
+      lngField: 'lng',
+      valueField: 'count'
+    };
+
+    var heatmap = new HeatmapOverlay();
+    heatmap.setData(testData);
+
+    const styleData = {
+      color: '#9400b5' 
+    }
+
+    const styleData = {
+      style: function (feature) {
+        switch (feature.properties.Qu_Su_Rad) {
+          case 'Qu_Su_Rad' > 2000: 
+            return {
+              color: "#b50000" //strong-red
+            };
+          case 'Qu_Su_Rad' < 2000: 
+            return {
+              color: "#9400b5" //purple
+            };
+        }
+      }
+    }
+
+    L.geoJSON(cycleData, styleData).addTo(map);
 
     L.geoJSON(cycleData, {
       style: function(feature) {
@@ -216,25 +255,7 @@ function DisplayHeatmap({ map }) {
                 };
           }
       }
-  }).addTo(map);
-
-    /*var testData = {
-      max: 8,
-      data: [{lat: 51.336, lng: 12.3730747, count: 1}, {lat: 51.8, lng: 12.5, count: 2}]
-    };
-  
-    var cfg = {
-      "radius": 0.0008,
-      "maxOpacity": 1,
-      "scaleRadius": true,
-      "useLocalExtrema": true,
-      latField: 'lat',
-      lngField: 'lng',
-      valueField: 'count'
-    };
-  
-    L.Heatmap(testData, cfg).addTo(map);*/
-  
+  }).addTo(map);  
 }
   
   return (
@@ -242,7 +263,7 @@ function DisplayHeatmap({ map }) {
       <button id='heatmap' onClick={showHeatmap}>Heatmap</button>
     </div>
   )
-}
+}*/
 
 function MapClear({ map }) {
 
@@ -311,8 +332,74 @@ function Map() {
       setPosition(e.latlng);
       map.flyTo(e.latlng, map.getZoom()+2);
     });
-  }  
+  } 
   
+  
+  const showHeatmap = () => {
+    console.log('Step 1');
+
+    var testData = {
+      max: 8,
+      data: [{lat: 51.336, lng: 12.3730747, count: 1}, {lat: 51.8, lng: 12.5, count: 2}]
+    };
+  
+    var cfg = {
+      "radius": 0.8,
+      "maxOpacity": 1,
+      "scaleRadius": true,
+      "useLocalExtrema": true,
+      latField: 'lat',
+      lngField: 'lng',
+      valueField: 'count'
+    };
+    
+    
+    console.log('Step 2');
+
+    var heatmap = new HeatmapOverlay(cfg);
+    heatmap.setData(testData);
+
+    console.log('Step 3');
+
+    /*const styleData = {
+      color: '#9400b5' 
+    }
+
+    const styleData = {
+      style: function (feature) {
+        switch (feature.properties.Qu_Su_Rad) {
+          case 'Qu_Su_Rad' > 2000: 
+            return {
+              color: "#b50000" //strong-red
+            };
+          case 'Qu_Su_Rad' < 2000: 
+            return {
+              color: "#9400b5" //purple
+            };
+        }
+      }
+    }
+
+    L.geoJSON(cycleData, styleData).addTo(map);
+
+    L.geoJSON(cycleData, {
+      style: function(feature) {
+          switch (feature.properties.Qu_Su_Rad) {
+              case 'Qu_Su_Rad' > 2000: 
+                return {
+                  color: "#b50000"
+                };
+              case 'Qu_Su_Rad' < 2000: 
+                return {
+                  color: "#9400b5"
+                };
+          }
+      }
+    }).addTo(map);  
+  }*/
+}
+
+
   return (
     <main id='app'>
       <div className='header'>
@@ -342,9 +429,9 @@ function Map() {
         <div>
           {map ? <DisplayDzs map={map} /> : null}   
         </div>
-        <div> 
-          {map ? <DisplayHeatmap map={map} /> : null}  
-        </div>
+        <div className='btnHeatmap'>
+            <button type="button" id='heatmapButton' onClick={showHeatmap}>Heatmap</button> 
+          </div>
         <div> 
           {map ? <MapClear map={map} /> : null}  
         </div>
@@ -357,5 +444,10 @@ export default Map;
 
 /*
 <div className='btnHeatmap'>
-            <button type="button" id='heatmapButton' onClick={showHeatmap}>Heatmap</button> 
-          </div> */
+  <button type="button" id='heatmapButton' onClick={showHeatmap}>Heatmap</button> 
+</div> 
+*/
+          
+/* <div> 
+    {map ? <DisplayHeatmap map={map} /> : null}  
+  </div>*/
