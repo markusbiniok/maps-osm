@@ -1,4 +1,4 @@
-#loactionButton {
+#loactionButton, #centerButton {
 	padding-top: 4px;
 	color: black;
 	border: none;
@@ -7,30 +7,14 @@
 	transition: .4s;
 }
 
-#loactionButton:hover{
+#loactionButton:hover, #centerButton:hover{
 	transform: scale(1.06);
 	background-color: #ffb31a;
 	cursor: pointer;
 }
 
 
-.btnCenter {
-	padding-top: 4px;
-	color: black;
-	border: none;
-	border-radius: 25px;
-	background-color: white;
-	transition: .4s;
-}
-
-.btnCenter:hover{
-	transform: scale(1.06);
-	background-color: #ffb31a;
-	cursor: pointer;
-}
-
-
-#cycleTraffic, #dzs, #heatmap, #clearAll {
+#cycleTraffic, #dzs, #heat, #clearAll {
   border: none;
   border-radius: 6px;
   padding: 5px 20px;
@@ -41,7 +25,7 @@
   transition: 0.3s;
 }
 
-#cycleTraffic:hover, #dzs:hover, #heatmap:hover, #clearAll:hover {
+#cycleTraffic:hover, #dzs:hover, #heat:hover, #clearAll:hover {
   background-color: #e37578;
   color: white;
 }

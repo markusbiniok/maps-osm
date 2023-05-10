@@ -16,16 +16,9 @@
 }
 
 .caption {
-  justify-self: flex-start;
   font-size: 1.5rem;
   font-weight: 600;
   color: white;
-}
-
-.headerButtons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .main {

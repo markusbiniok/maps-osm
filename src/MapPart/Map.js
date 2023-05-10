@@ -6,8 +6,8 @@ import L from 'leaflet';
 import { MapContainer, TileLayer, Popup, Marker } from 'react-leaflet';
 import cycleData from './data/Radmengen_21-22.json';
 import locationIcon from './images/icon_location.png';
+import centerIcon from './images/icon_center.png';
 //import testData from './data/testData.json';
-//import centerIcon from '.images/icon_center.png';
 
 
 const mapCenter = [51.336, 12.3730747];
@@ -64,8 +64,14 @@ const mapZoom = 14;
 function DisplayCycleTraffic({ map }) {
   
   const showCycleTraffic = () => {
+    map.eachLayer(function (layer) {
+      if (layer instanceof L.Polyline) {
+        layer.remove()
+      }
+    });
     var cycleDataStyle = {
-      color: 'red'
+      color: '#ff0099',
+      weight: 3
     }
 
     L.geoJSON(cycleData, cycleDataStyle).addTo(map);
@@ -196,72 +202,58 @@ function DisplayDzs({ map }) {
   )
 }
 
-/*function DisplayHeatmap({ map }) {
+function DisplayHeat({ map }) {
 
   const showHeatmap = () => {
-    console.log('change color');
-
-    var testData = {
-      max: 8,
-      data: [{lat: 51.336, lng: 12.3730747, count: 1}, {lat: 51.8, lng: 12.5, count: 2}]
-    };
-  
-    var cfg = {
-      "radius": 0.0008,
-      "maxOpacity": 1,
-      "scaleRadius": true,
-      "useLocalExtrema": true,
-      latField: 'lat',
-      lngField: 'lng',
-      valueField: 'count'
-    };
-
-    var heatmap = new HeatmapOverlay();
-    heatmap.setData(testData);
-
-    const styleData = {
-      color: '#9400b5' 
-    }
-
-    const styleData = {
-      style: function (feature) {
-        switch (feature.properties.Qu_Su_Rad) {
-          case 'Qu_Su_Rad' > 2000: 
-            return {
-              color: "#b50000" //strong-red
-            };
-          case 'Qu_Su_Rad' < 2000: 
-            return {
-              color: "#9400b5" //purple
-            };
-        }
+    map.eachLayer(function (layer) {
+      if (layer instanceof L.Polyline) {
+        layer.remove()
       }
-    }
+    });
+    /*
+    täglich 6-19 Uhr = 13 Stunden, Zeit mit dem höchsten Radverkehrsaufkommen
+    1000
+    1,28 => 1 Radfahrer/min
 
-    L.geoJSON(cycleData, styleData).addTo(map);
+    2000
+    2,567 => 3 Radfahrer/min
+
+    3000
+    3,85 => 4 Radfahrer/min
+
+    4000
+    5,134 => 5 Radfahrer/min
+    */
 
     L.geoJSON(cycleData, {
       style: function(feature) {
-          switch (feature.properties.Qu_Su_Rad) {
-              case 'Qu_Su_Rad' > 2000: 
-                return {
-                  color: "#b50000"
-                };
-              case 'Qu_Su_Rad' < 2000: 
-                return {
-                  color: "#9400b5"
-                };
-          }
+        if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 1500) {
+          return {
+            color: "green", //green
+            weight: 5
+          };
+        } else if (feature.properties.Qu_Su_Rad >= 1500 && feature.properties.Qu_Su_Rad < 3000) {
+          return {
+            color: "yellow", //yellow
+            weight: 5
+          };
+        } else if (feature.properties.Qu_Su_Rad >= 3000) {
+          return {
+            color: "red", //red
+            weight: 5 
+          };
+        }
       }
-  }).addTo(map);  
-}
-  
+    }).bindPopup(function (feature) {
+      return feature.properties.Qu_Su_Rad; //er findet evtl Qu_Su_Rad nicht
+    }).addTo(map);
+}  
   return (
-    <div className='btnHeatmap'>
-      <button id='heatmap' onClick={showHeatmap}>Heatmap</button>
+    <div className='btnHeat'>
+      <button id='heat' onClick={showHeatmap}>Heatmap</button>
     </div>
   )
-}*/
+}
 
 function MapClear({ map }) {
 
@@ -281,7 +273,6 @@ function MapClear({ map }) {
         layer.remove()
       }
     });
-    map.setView(mapCenter, mapZoom);
   };
   
   return (
@@ -291,27 +282,17 @@ function MapClear({ map }) {
   )
 }
 
-//from https://react-leaflet.js.org/docs/example-external-state/
-//center map
-/*function MapCenter({ map }) {
-
-  const centerMap = () => {
-    map.setView(mapCenter, mapZoom)
-  };
-  
-  return (
-    <div className="mapBtn5">
-      <button type="button" class="btnCenter" onClick={centerMap}><img src={centerIcon} width="30" height="30" alt ="center icon"/></button>
-    </div>
-  )
-}*/
-
 
 function Map() {
 
   const [map, setMap] = useState(null); 
   const [position, setPosition] = useState(null);
 
+  //from https://react-leaflet.js.org/docs/example-external-state/
+  //center map
+  const centerMap = () => {
+    map.setView(mapCenter, mapZoom);
+  };
 
   function DisplayGeolocation () {
 
@@ -320,7 +301,7 @@ function Map() {
         mouseover: (event) => event.target.openPopup(),
         mouseout: (event) => event.target.closePopup(),
       }}>
-        <Popup>Sie sind hier</Popup>
+        <Popup>Sie befinden sich hier</Popup>
       </Marker>
     )
   }
@@ -330,90 +311,18 @@ function Map() {
       setPosition(e.latlng);
       map.flyTo(e.latlng, map.getZoom()+2);
     });
-  } 
-  
-  
-  const showHeatmap = () => {
-    console.log('Step 1');
-
-
-    L.geoJSON(cycleData, {
-      style: function(feature) {
-        if (feature.properties.Qu_Su_Rad > 2500) {
-          return {
-            color: "#ff0d00", //red
-            weight: 4
-          };
-        } else {
-          return {
-            color: "#1aff00", //green
-            weight: 4 
-          };
-        }
-      }
-    }).bindPopup(function (feature) {
-      return feature.properties.Qu_Su_Rad; //er findet evtl Qu_Su_Rad nicht
-    }).addTo(map);    
-
-    /*marker7.on('mouseover', function (e) {
-      this.openPopup();
-    });*/
-
-    /*var testData = {
-      max: 8,
-      data: [{lat: 51.336, lng: 12.3730747, count: 1}, {lat: 51.8, lng: 12.5, count: 2}]
-    };
-  
-    var cfg = {
-      "radius": 0.8,
-      "maxOpacity": 1,
-      "scaleRadius": true,
-      "useLocalExtrema": true,
-      latField: 'lat',
-      lngField: 'lng',
-      valueField: 'count'
-    };
-    
-
-    console.log('Step 2');
-
-    var heatmap = new HeatmapOverlay(cfg);
-    heatmap.setData(testData);
-
-    console.log('Step 3');
-
-    const styleData = {
-      color: '#9400b5' 
-    }
-
-    const styleData = {
-      style: function (feature) {
-        switch (feature.properties.Qu_Su_Rad) {
-          case 'Qu_Su_Rad' > 2000: 
-            return {
-              color: "#b50000" //strong-red
-            };
-          case 'Qu_Su_Rad' < 2000: 
-            return {
-              color: "#9400b5" //purple
-            };
-        }
-      }
-    }
-
-    L.geoJSON(cycleData, styleData).addTo(map); 
-  }*/
-}
+  }
 
 
   return (
     <main id='app'>
       <div className='header'>
         <div className='caption'>Radverkehrsdaten und Radwegnutzung</div>
-        <div className='headerButtons'>
-          <div className='btnLocation'>
-            <button type="button" id='loactionButton' onClick={showGeolocation}><img src={locationIcon} width="30" height="30" alt ="location icon"/></button> 
-          </div>
+        <div className='btnCenter'>
+          <button type="button" id='centerButton' onClick={centerMap}><img src={centerIcon} width="30" height="30" alt ="center icon"/></button> 
+        </div>
+        <div className='btnLocation'>
+          <button type="button" id='loactionButton' onClick={showGeolocation}><img src={locationIcon} width="30" height="30" alt ="location icon"/></button> 
         </div>
       </div>
       <div className='main'>
@@ -435,9 +344,9 @@ function Map() {
         <div>
           {map ? <DisplayDzs map={map} /> : null}   
         </div>
-        <div className='btnHeatmap'>
-            <button type="button" id='heatmapButton' onClick={showHeatmap}>Heatmap</button> 
-          </div>
+        <div>
+          {map ? <DisplayHeat map={map} /> : null}   
+        </div>
         <div> 
           {map ? <MapClear map={map} /> : null}  
         </div>
