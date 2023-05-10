@@ -6,7 +6,6 @@ import L from 'leaflet';
 import { MapContainer, TileLayer, Popup, Marker } from 'react-leaflet';
 import cycleData from './data/Radmengen_21-22.json';
 import locationIcon from './images/icon_location.png';
-import HeatmapOverlay from 'leaflet-heatmap/leaflet-heatmap.js';
 //import testData from './data/testData.json';
 //import centerIcon from '.images/icon_center.png';
 
@@ -337,15 +336,24 @@ function Map() {
   const showHeatmap = () => {
     console.log('Step 1');
 
+
     L.geoJSON(cycleData, {
-      style: function() {
+      style: function(feature) {
+        if (feature.properties.Qu_Su_Rad > 2500) {
           return {
-            color: 'purple'
-          }
+            color: "#ff0d00", //red
+            weight: 4
+          };
+        } else {
+          return {
+            color: "#1aff00", //green
+            weight: 4 
+          };
+        }
       }
     }).bindPopup(function (feature) {
       return feature.properties.Qu_Su_Rad; //er findet evtl Qu_Su_Rad nicht
-    }).addTo(map); 
+    }).addTo(map);    
 
     /*marker7.on('mouseover', function (e) {
       this.openPopup();
