@@ -14,51 +14,6 @@ const mapCenter = [51.336, 12.3730747];
 const mapZoom = 14;
 
 
-//show demo-cycle-traffic
-/*function DisplayDemoCycleTraffic({ map }) //external state
-{
-  const demoCycleTraffic = () => {
-
-    switch (document.getElementById('cb1').checked) {
-      case true:
-        var markerDemoCycleTraffic = {
-          radius: 1,
-          fillColor: '#8a1c82',
-          fillOpacity: 1,
-          color: '#8a1c82',
-          weight: 2, 
-          opacity: 1
-        }
-        //geoJSON points to mapLayer
-        L.geoJSON (testData, {
-          pointToLayer: function (feature, latlng) {
-            return L.circleMarker (latlng, markerDemoCycleTraffic);
-          }
-        }).addTo(map);
-        break;
-      case false:
-        map.eachLayer(function (layer) {
-          if (layer instanceof L.CircleMarker) {
-            layer.remove()
-          }
-        });
-        break;
-      default:
-        break;
-    }
-  };
-
-  return (
-    <div className='btnDemoCycleTraffic'>
-      <label className='switch'>
-        <input type='checkbox' id='cb1' onClick={demoCycleTraffic}/>
-        <span className='slider round'/>
-      </label>
-      <p>Demo Radverkehr</p>
-    </div>
-  )
-}*/
-
 //show cycle-traffic
 //manual counting on certain sections of the road network in the city of Leipzig
 function DisplayCycleTraffic({ map }) {
@@ -255,6 +210,71 @@ function DisplayHeat({ map }) {
   )
 }
 
+/*function DisplayTrafficHeat({ map }) {
+
+  const showTrafficHeat = () => {
+    switch (document.getElementById('cb1').checked) {
+      case true:
+        console.log('true');
+        console.log('false');
+        map.eachLayer(function (layer) {
+          if (layer instanceof L.Polyline) {
+            layer.remove()
+          }
+        });
+        L.geoJSON(cycleData, {
+          style: function(feature) {
+            if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 1500) {
+              return {
+                color: "green", //green
+                weight: 5
+              };
+            } else if (feature.properties.Qu_Su_Rad >= 1500 && feature.properties.Qu_Su_Rad < 3000) {
+              return {
+                color: "yellow", //yellow
+                weight: 5
+              };
+            } else if (feature.properties.Qu_Su_Rad >= 3000) {
+              return {
+                color: "red", //red
+                weight: 5 
+              };
+            }
+          }
+        }).bindPopup(function (feature) {
+          return feature.properties.Qu_Su_Rad; //er findet evtl Qu_Su_Rad nicht
+        }).addTo(map);
+        break;
+      case false:
+        map.eachLayer(function (layer) {
+          if (layer instanceof L.Polyline) {
+            layer.remove()
+          }
+        });
+        var cycleDataStyle = {
+          color: '#ff0099',
+          weight: 3
+        }
+    
+        L.geoJSON(cycleData, cycleDataStyle).addTo(map);
+        break;
+      default:
+        break;
+    }
+  };
+  
+  return (
+    <div className='btnTrafficHeat'>
+      <p>Radverkehr</p>
+      <label className='switch'>
+        <input type='checkbox' id='cb1' onClick={showTrafficHeat}/>
+        <span className='slider round'/>
+      </label>
+      <p>Heatmap</p>
+    </div>
+  )
+}*/
+
 function MapClear({ map }) {
 
   const clearMap = () => {
@@ -339,10 +359,10 @@ function Map() {
       </div>
       <div className='dataButtons'> 
         <div>
-          {map ? <DisplayCycleTraffic map={map} /> : null}   
+          {map ? <DisplayDzs map={map} /> : null}   
         </div>
         <div>
-          {map ? <DisplayDzs map={map} /> : null}   
+          {map ? <DisplayCycleTraffic map={map} /> : null}   
         </div>
         <div>
           {map ? <DisplayHeat map={map} /> : null}   
@@ -366,3 +386,51 @@ export default Map;
 /* <div> 
     {map ? <DisplayHeatmap map={map} /> : null}  
   </div>*/
+
+
+
+
+  //show demo-cycle-traffic
+/*function DisplayDemoCycleTraffic({ map }) //external state
+{
+  const demoCycleTraffic = () => {
+
+    switch (document.getElementById('cb1').checked) {
+      case true:
+        var markerDemoCycleTraffic = {
+          radius: 1,
+          fillColor: '#8a1c82',
+          fillOpacity: 1,
+          color: '#8a1c82',
+          weight: 2, 
+          opacity: 1
+        }
+        //geoJSON points to mapLayer
+        L.geoJSON (testData, {
+          pointToLayer: function (feature, latlng) {
+            return L.circleMarker (latlng, markerDemoCycleTraffic);
+          }
+        }).addTo(map);
+        break;
+      case false:
+        map.eachLayer(function (layer) {
+          if (layer instanceof L.CircleMarker) {
+            layer.remove()
+          }
+        });
+        break;
+      default:
+        break;
+    }
+  };
+
+  return (
+    <div className='btnDemoCycleTraffic'>
+      <label className='switch'>
+        <input type='checkbox' id='cb1' onClick={demoCycleTraffic}/>
+        <span className='slider round'/>
+      </label>
+      <p>Demo Radverkehr</p>
+    </div>
+  )
+}*/

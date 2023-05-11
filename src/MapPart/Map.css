@@ -38,7 +38,14 @@
 .dataButtons {
   margin-top: 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   width: var(--mpWidth);
+  grid-gap: 150px;
+}
+
+.btnTrafficHeat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
