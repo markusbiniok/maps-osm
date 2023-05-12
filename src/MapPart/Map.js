@@ -25,7 +25,7 @@ function DisplayCycleTraffic({ map }) {
       }
     });
     var cycleDataStyle = {
-      color: '#ff0099',
+      color: '#ff008c',
       weight: 3
     }
 
