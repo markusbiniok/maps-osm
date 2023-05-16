@@ -34,15 +34,13 @@
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 15% 85%;
-  grid-template-rows: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   grid-template-areas: 
     "span5 p5"
     "span6 p6"
     "span7 p7"
     "span8 p8"
-    "span9 p9"
-    "span10 p10"
-    "span11 p11";
+    "span9 p9";
 }
 
 #span1 {

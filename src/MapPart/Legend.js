@@ -28,9 +28,7 @@ function Legend() {
         <div> 
           <img id='span9' src={bicycle} alt='bicycle icon'/>
         </div>
-        <div id='p9'>Fahrradgeschäft</div>
-        <div id='span10'/><div id='p10'>regionale Radrouten</div> 
-        <div id='span11'/><div id='p11'>lokale Radrouten</div>                     
+        <div id='p9'>Fahrradgeschäft</div>                    
       </div>
       <p id='ut'>Heatmap</p>
       <div className='heatmap'>
@@ -47,3 +45,8 @@ function Legend() {
 }
 
 export default Legend;
+
+/*
+<div id='span10'/><div id='p10'>regionale Radrouten</div> 
+<div id='span11'/><div id='p11'>lokale Radrouten</div> 
+*/
