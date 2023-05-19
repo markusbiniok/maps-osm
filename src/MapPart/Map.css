@@ -5,7 +5,7 @@
   }    
 }
 
-@media only screen and (min-width: 1400px) {
+@media only screen and (min-width: 1200px) {
   :root {
     --mpHeight: 85vh;
     --mpWidth: 80vw;
