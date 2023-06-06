@@ -45,8 +45,3 @@ function Legend() {
 }
 
 export default Legend;
-
-/*
-<div id='span10'/><div id='p10'>regionale Radrouten</div> 
-<div id='span11'/><div id='p11'>lokale Radrouten</div> 
-*/
