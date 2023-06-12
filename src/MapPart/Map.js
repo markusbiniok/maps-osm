@@ -8,7 +8,7 @@ import cycleData from './data/Radmengen_21-22.json';
 import locationIcon from './images/icon_location.png';
 import centerIcon from './images/icon_center.png';
 
-
+//hallo
 const mapCenter = [51.336, 12.3730747];
 const mapZoom = 14;
 
@@ -181,7 +181,29 @@ function DisplayHeat({ map }) {
 
     L.geoJSON(cycleData, {
       style: function(feature) {
-        if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 1500) {
+        if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 2829) {
+          return {
+            color: "green", //green
+            weight: 5
+          };
+        } else if (feature.properties.Qu_Su_Rad >= 2829 && feature.properties.Qu_Su_Rad < 4507) {
+          return {
+            color: "yellow", //yellow
+            weight: 5
+          };
+        } else if (feature.properties.Qu_Su_Rad >= 4507) {
+          return {
+            color: "red", //red
+            weight: 5 
+          };
+        }
+      }
+    }).bindPopup(function (feature) {
+      return feature.properties.Qu_Su_Rad; //er findet evtl Qu_Su_Rad nicht
+    }).addTo(map);
+
+    /* 
+    if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 1500) {
           return {
             color: "green", //green
             weight: 5
@@ -197,10 +219,27 @@ function DisplayHeat({ map }) {
             weight: 5 
           };
         }
+    
+    mit Durchschnitt
+    L.geoJSON(cycleData, {
+    style: function(feature) {
+      if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 2829) {
+        return {
+          color: "green", //green
+          weight: 5
+        };
+      } else if (feature.properties.Qu_Su_Rad >= 2829 && feature.properties.Qu_Su_Rad < 4507) {
+        return {
+          color: "yellow", //yellow
+          weight: 5
+        };
+      } else if (feature.properties.Qu_Su_Rad >= 4508) {
+        return {
+          color: "red", //red
+          weight: 5 
+        };
       }
-    }).bindPopup(function (feature) {
-      return feature.properties.Qu_Su_Rad; //er findet evtl Qu_Su_Rad nicht
-    }).addTo(map);
+    } */
 }  
   return (
     <div className='btnHeat'>
