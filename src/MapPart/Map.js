@@ -12,30 +12,6 @@ import centerIcon from './images/icon_center.png';
 const mapCenter = [51.336, 12.3730747];
 const mapZoom = 14;
 
-//show cycle-traffic
-//manual counting on certain sections of the road network in the city of Leipzig
-function DisplayCycleTraffic({ map }) {
-  
-  const showCycleTraffic = () => {
-    map.eachLayer(function (layer) {
-      if (layer instanceof L.Polyline) {
-        layer.remove()
-      }
-    });
-    var cycleDataStyle = {
-      color: '#ff008c',
-      weight: 3
-    }
-
-    L.geoJSON(cycleData, cycleDataStyle).addTo(map);
-  };
-
-  return (
-    <div className='btnCycleTraffic'>
-      <button id='cycleTraffic' onClick={showCycleTraffic}>Radverkehr</button>
-    </div>
-  )
-}
 
 function DisplayDzs({ map }) {
 
@@ -151,6 +127,31 @@ function DisplayDzs({ map }) {
   return (
     <div className='btnDzs'>
       <button id='dzs' onClick={dzs}>Dauerzählstellen</button>
+    </div>
+  )
+}
+
+//show cycle-traffic
+//manual counting on certain sections of the road network in the city of Leipzig
+function DisplayCycleTraffic({ map }) {
+  
+  const showCycleTraffic = () => {
+    map.eachLayer(function (layer) {
+      if (layer instanceof L.Polyline) {
+        layer.remove()
+      }
+    });
+    var cycleDataStyle = {
+      color: '#ff008c',
+      weight: 3
+    }
+
+    L.geoJSON(cycleData, cycleDataStyle).addTo(map);
+  };
+
+  return (
+    <div className='btnCycleTraffic'>
+      <button id='cycleTraffic' onClick={showCycleTraffic}>Radverkehr</button>
     </div>
   )
 }
