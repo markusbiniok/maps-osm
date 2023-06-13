@@ -181,17 +181,18 @@ function DisplayHeat({ map }) {
 
     L.geoJSON(cycleData, {
       style: function(feature) {
-        if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 2829) {
+        //mit Median
+        if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 1963) {
           return {
             color: "green", //green
             weight: 5
           };
-        } else if (feature.properties.Qu_Su_Rad >= 2829 && feature.properties.Qu_Su_Rad < 4507) {
+        } else if (feature.properties.Qu_Su_Rad >= 1963 && feature.properties.Qu_Su_Rad < 4030) {
           return {
             color: "yellow", //yellow
             weight: 5
           };
-        } else if (feature.properties.Qu_Su_Rad >= 4507) {
+        } else if (feature.properties.Qu_Su_Rad >= 4030) {
           return {
             color: "red", //red
             weight: 5 
@@ -202,7 +203,7 @@ function DisplayHeat({ map }) {
       return feature.properties.Qu_Su_Rad; //er findet evtl Qu_Su_Rad nicht
     }).addTo(map);
 
-    /* 
+    /* ursprünglich
     if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 1500) {
           return {
             color: "green", //green
@@ -233,7 +234,7 @@ function DisplayHeat({ map }) {
           color: "yellow", //yellow
           weight: 5
         };
-      } else if (feature.properties.Qu_Su_Rad >= 4508) {
+      } else if (feature.properties.Qu_Su_Rad >= 4507) {
         return {
           color: "red", //red
           weight: 5 
