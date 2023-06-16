@@ -8,7 +8,7 @@ import cycleData from './data/Radmengen_21-22.json';
 import locationIcon from './images/icon_location.png';
 import centerIcon from './images/icon_center.png';
 
-//hallo
+
 const mapCenter = [51.336, 12.3730747];
 const mapZoom = 14;
 
@@ -164,7 +164,7 @@ function DisplayHeat({ map }) {
         layer.remove()
       }
     });
-    
+
     /*
     täglich 6-19 Uhr = 13 Stunden, Zeit mit dem höchsten Radverkehrsaufkommen
     1000
