@@ -182,7 +182,6 @@ function DisplayHeat({ map }) {
 
     L.geoJSON(cycleData, {
       style: function(feature) {
-        //mit Median
         if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 1500) {
           return {
             color: "green", //green
@@ -200,6 +199,44 @@ function DisplayHeat({ map }) {
           };
         }
       }
+
+    /* Radfahrer pro Minute
+    if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 1500) {
+      return {
+        color: "green", //green
+        weight: 5
+      };
+    } else if (feature.properties.Qu_Su_Rad >= 1500 && feature.properties.Qu_Su_Rad < 3000) {
+      return {
+        color: "yellow", //yellow
+        weight: 5
+      };
+    } else if (feature.properties.Qu_Su_Rad >= 3000) {
+      return {
+        color: "red", //red
+        weight: 5 
+      };
+    }
+    
+    mit Median
+    if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 1963) {
+          return {
+            color: "green", //green
+            weight: 5
+          };
+        } else if (feature.properties.Qu_Su_Rad >= 1963 && feature.properties.Qu_Su_Rad < 4030) {
+          return {
+            color: "yellow", //yellow
+            weight: 5
+          };
+        } else if (feature.properties.Qu_Su_Rad >= 4030) {
+          return {
+            color: "red", //red
+            weight: 5 
+          };
+    }
+    */
+
     }).bindPopup(function (feature) {
       return feature.properties.Qu_Su_Rad; //Qu_Su_Rad not found
     }).addTo(map);
