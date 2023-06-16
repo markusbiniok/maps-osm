@@ -1,6 +1,7 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+It shows bicycle traffic on certain track sections in Leipzig in 2021 and 2022.
 
 ## Available Scripts
 
