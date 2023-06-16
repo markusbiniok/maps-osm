@@ -164,6 +164,7 @@ function DisplayHeat({ map }) {
         layer.remove()
       }
     });
+    
     /*
     täglich 6-19 Uhr = 13 Stunden, Zeit mit dem höchsten Radverkehrsaufkommen
     1000
@@ -182,29 +183,7 @@ function DisplayHeat({ map }) {
     L.geoJSON(cycleData, {
       style: function(feature) {
         //mit Median
-        if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 1963) {
-          return {
-            color: "green", //green
-            weight: 5
-          };
-        } else if (feature.properties.Qu_Su_Rad >= 1963 && feature.properties.Qu_Su_Rad < 4030) {
-          return {
-            color: "yellow", //yellow
-            weight: 5
-          };
-        } else if (feature.properties.Qu_Su_Rad >= 4030) {
-          return {
-            color: "red", //red
-            weight: 5 
-          };
-        }
-      }
-    }).bindPopup(function (feature) {
-      return feature.properties.Qu_Su_Rad; //er findet evtl Qu_Su_Rad nicht
-    }).addTo(map);
-
-    /* ursprünglich
-    if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 1500) {
+        if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 1500) {
           return {
             color: "green", //green
             weight: 5
@@ -220,27 +199,10 @@ function DisplayHeat({ map }) {
             weight: 5 
           };
         }
-    
-    mit Durchschnitt
-    L.geoJSON(cycleData, {
-    style: function(feature) {
-      if (feature.properties.Qu_Su_Rad > 0 && feature.properties.Qu_Su_Rad < 2829) {
-        return {
-          color: "green", //green
-          weight: 5
-        };
-      } else if (feature.properties.Qu_Su_Rad >= 2829 && feature.properties.Qu_Su_Rad < 4507) {
-        return {
-          color: "yellow", //yellow
-          weight: 5
-        };
-      } else if (feature.properties.Qu_Su_Rad >= 4507) {
-        return {
-          color: "red", //red
-          weight: 5 
-        };
       }
-    } */
+    }).bindPopup(function (feature) {
+      return feature.properties.Qu_Su_Rad; //Qu_Su_Rad not found
+    }).addTo(map);
 }  
   return (
     <div className='btnHeat'>
